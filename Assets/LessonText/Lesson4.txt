@@ -1,0 +1,12 @@
+[The scene fades from black. The professor pops up to the side of the player at
+stranger/acquaintance distance, the boy pops up slightly behind the player at friend distance,
+and three small dragon-like creatures appears further ahead.]
+Professor: Now young one, go ahead and pick your Dragonkin! Your friend will pick after you.
+[The boy sighs disappointedly.]
+Professor: We have Graggle the terra type, Fina the aqua type, and Chindin the pyro type. Go
+ahead and pick you new friend.
+[A guidance circle appears below each of the dragons without any rings highlighted. When the
+player enters the friend range of one of the dragons, the professor will continue.]
+Professor: Ah, so you’ve picked [dragon name]? Excellent choice young one! I bet you two will
+become the best of friends.
+[The scene fades to white.]

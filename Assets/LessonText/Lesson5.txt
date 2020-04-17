@@ -1,0 +1,15 @@
+[The scene fades from white. The professor pops up a bit further ahead, and the chosen dragon
+and boy appear at friend distance slightly behind you.]
+Professor: Now kids, do you know why we befriend Dragonkin?
+[The boy looks confused.]
+Boy: Weeeell… No actually… Why do we befriend them, professor?
+[The professor responds, smiling.]
+Professor: Well come back over here and I’ll tell you!
+[A guidance circle appears below the professor without any rings highlighted. When the player
+enters the stranger/acquaintance range, the professor will continue.]
+Professor: We befriend Dragonkin so that we can travel around the world and meet all kinds of
+new people safely. Are you kids ready to head out and see the world with your scaled friends?
+[The boy excitedly responds.]
+Boy: Yeah!!! Let’s see all kinds of people and places!
+Professor: Just don’t forget to tell your mother you’re leaving.
+[The professor says chuckling, and the scene fades to white.]

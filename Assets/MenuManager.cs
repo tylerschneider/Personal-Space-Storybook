@@ -14,6 +14,9 @@ public class MenuManager : MonoBehaviour
     public GameObject createPinScreen;
     public InputField checkPinInput;
     public GameObject checkPinError;
+    public Text lessonTitle;
+    public Text lessonText;
+    public GameObject lessonMenu;
 
 
     private void Start()
@@ -32,6 +35,8 @@ public class MenuManager : MonoBehaviour
 
     public void ChangeMenu(GameObject selectedMenu)
     {
+        print(selectedMenu);
+
         foreach (GameObject menu in menus)
         {
             if(menu != selectedMenu && menu.activeSelf)
@@ -44,6 +49,14 @@ public class MenuManager : MonoBehaviour
                 menu.SetActive(true);
             }
         }
+    }
+
+    public void LessonMenu(GameObject lesson)
+    {
+        lessonTitle.text = lesson.name;
+        lessonText.text = lesson.GetComponent<Lesson>().lessonText.text;
+
+        ChangeMenu(lessonMenu);
     }
 
     public void CheckPin(GameObject selectedMenu)

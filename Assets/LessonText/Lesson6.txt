@@ -1,0 +1,14 @@
+[The scene fades from white, and the player’s mother pops up a ways in front of them. She’s
+facing away at first but then turns to face the player. The player’s Dragonkin also pops up
+beside the player at friend distance.]
+Mother: Oh, you’re back! Which Dragonkin did you pick?
+[The player’s Dragonkin hops up and down making a happy growl.]
+Mother: Aww, it’s so cute! Come closer dear so I can get a better look at you two.
+[A guidance circle appears below the player’s mother without any rings highlighted. When the
+player enters the family range, the dialogue will continue.]
+Mother: You two really do look like you’re fine friends already! Did the professor say why you
+got a Dragonkin partner? He did? Good, good! I’m sure you’re excited, so I packed this bag for
+you.
+[The player’s mother pulls out a bag to hand the player, and it disappears.]
+Mother: Now, go ahead and explore the world! I’ll be rooting for you!
+[The scene fades to white.]

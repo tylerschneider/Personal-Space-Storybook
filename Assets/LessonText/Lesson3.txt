@@ -1,0 +1,10 @@
+[The scene fades from black. The friendly boy pops up, already at friend distance. An old man in
+a lab coat, presumably Professor Pineapple, pops up further ahead in the room.]
+Professor: Oh? You kids are here already? I didn’t think young people showed up on time
+anymore.
+[The professor chuckles and continues.]
+Professor: Well, step forward when you’re ready to pick your Dragonkin.
+[A guidance circle appears around the professor with the stranger/acquaintance ring
+highlighted. When the player enters the appropriate range, the dialogue continues.]
+Professor: Alright, now give me just a moment to prepare them…
+[The scene fades to black.]

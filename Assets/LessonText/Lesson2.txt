@@ -1,0 +1,10 @@
+[The scene fades in from black, and a young boy pops up.]
+Friend: Hey friendo! You on your way to meet Professor Pineapple and pick your Dragonkin?
+Awesome~!
+[The boy’s eyes light up excitedly.]
+Friend: I already know which one I want! Come a little closer so I can tell you.
+[A guidance circle appears around the boy with the friend ring highlighted. When the player
+enters the appropriate range, the dialogue continues.]
+Friend: You see, I really want the aqua type, Fina! But let’s hurry on to the lab, pal, we really
+wouldn’t want to miss out on choosing!
+[Scene fades to black.]
