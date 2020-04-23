@@ -17,6 +17,7 @@ public class MenuManager : MonoBehaviour
     public Text lessonTitle;
     public Text lessonText;
     public GameObject lessonMenu;
+    public NoteMenuManager noteMenuManager;
 
 
     private void Start()
