@@ -64,4 +64,15 @@ public class LessonManager : MonoBehaviour
         bf.Serialize(file, data);
         file.Close();
     }
+
+    public void DeleteAllHistory()
+    {
+        DirectoryInfo info = new DirectoryInfo(Application.persistentDataPath + "/data/");
+        FileInfo[] files = info.GetFiles();
+
+        foreach (FileInfo fileInfo in files)
+        {
+            File.Delete(fileInfo.FullName);
+        }
+    }
 }

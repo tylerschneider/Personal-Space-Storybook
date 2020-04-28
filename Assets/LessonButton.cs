@@ -27,7 +27,7 @@ public class LessonButton : MonoBehaviour
         }
         else
         {
-
+            //put lesson loading code for students here
         }
 
     }

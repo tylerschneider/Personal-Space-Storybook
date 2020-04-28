@@ -42,6 +42,17 @@ public class HistoryLoader : MonoBehaviour
         }
     }
 
+    public void SortMenu(Text lesson)
+    {
+        foreach (Transform row in content.transform)
+        {
+            if(row.Find("Lesson").GetComponent<Text>().text != lesson.text)
+            {
+                Destroy(row.gameObject);
+            }
+        }
+    }
+
     private void OnDisable()
     {
         foreach (Transform child in content.transform)
