@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 public class LessonLoader : MonoBehaviour
 {
+    //gameobject that holds the lesson buttons
     public GameObject content;
+    //prefab for the lesson button
     public GameObject lessonButton;
+    //whether the menu is the instructor menu or the student menu
     public bool instructor;
 
     private void OnEnable()
     {
+        //destroy any buttons already loaded
         foreach(Transform child in content.transform)
         {
             Destroy(child.gameObject);

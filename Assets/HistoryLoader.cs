@@ -8,27 +8,36 @@ using System.Linq;
 
 public class HistoryLoader : MonoBehaviour
 {
+    //gameobject that holds the history table
     public GameObject content;
+    //prefab of a row in the history table
     public GameObject historyRow;
+    //sprites for the pencil/speech bubble buttons to display if a note is set
     public Sprite bubble;
     public Sprite pencil;
     private void OnEnable()
     {
         DirectoryInfo info = new DirectoryInfo(Application.persistentDataPath + "/data/");
+
+        //load the files in the data folder and store them in the files array in order of creation time (newest first)
         FileInfo[] files = info.GetFiles().OrderByDescending(p => p.CreationTime).ToArray();
         foreach (FileInfo fileInfo in files)
         {
+            //open each file
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(fileInfo.FullName, FileMode.Open);
             LessonData data = (LessonData)bf.Deserialize(file);
             file.Close();
 
+            //create a new row in the table for each file
             GameObject row = Instantiate(historyRow, content.transform);
 
+            //display the file's given date, lesson name, and score
             row.transform.Find("Date").GetComponent<Text>().text = data.date.ToString("MM/dd/yy");
             row.transform.Find("Lesson").GetComponent<Text>().text = data.lesson;
             row.transform.Find("Score").GetComponent<Text>().text = data.score.ToString();
 
+            //display a pencil button if there is no note, or a speach bubble if there is a note
             if (data.note == "")
             {
                 row.transform.Find("Button").GetComponent<Image>().sprite = pencil;
@@ -37,11 +46,12 @@ public class HistoryLoader : MonoBehaviour
             {
                 row.transform.Find("Button").GetComponent<Image>().sprite = bubble;
             }
-
+            //pass the file's data to the button so that it can be used by the note menu
             row.transform.Find("Button").GetComponent<HistoryButton>().data = data;
         }
     }
 
+    //displays only the history of the given lesson
     public void SortMenu(Text lesson)
     {
         foreach (Transform row in content.transform)
@@ -55,6 +65,7 @@ public class HistoryLoader : MonoBehaviour
 
     private void OnDisable()
     {
+        //clears all of the displayed history rows in the table when the history menu is closed
         foreach (Transform child in content.transform)
         {
             Destroy(child.gameObject);

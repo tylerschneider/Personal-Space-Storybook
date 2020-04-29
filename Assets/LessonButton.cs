@@ -12,10 +12,13 @@ public class LessonButton : MonoBehaviour
     public bool pressed;
     public void OnClick()
     {
+        //check if the button is in the instructor menu
         if(lessonLoader.instructor)
         {
+            //toggle the button
             lesson.GetComponent<Lesson>().lessonEnabled = !lesson.GetComponent<Lesson>().lessonEnabled;
 
+            //change the button's color when enabled/disabled
             if(lesson.GetComponent<Lesson>().lessonEnabled)
             {
                 GetComponent<Image>().color = Color.white;
@@ -24,6 +27,9 @@ public class LessonButton : MonoBehaviour
             {
                 GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
             }
+
+            //save whether the lesson has been enabled/disabled when it is toggled
+            LessonManager.Instance.SaveEnabledLessons();
         }
         else
         {
@@ -33,10 +39,12 @@ public class LessonButton : MonoBehaviour
     }
     public void OnHold()
     {
+        //start holding
         pressed = true;
     }
     public void OffHold()
     {
+        //stop holding and reset the timer
         pressed = false;
         time = 0;
     }
@@ -44,6 +52,7 @@ public class LessonButton : MonoBehaviour
 
     public void Change()
     {
+        //change menus if in the instructor menu
         if (lessonLoader.instructor)
         {
             MenuManager.Instance.LessonMenu(lesson);
@@ -52,6 +61,7 @@ public class LessonButton : MonoBehaviour
 
     private void Update()
     {
+        //tracks how long a button has been held down
         if(pressed)
         {
             time += Time.deltaTime;
@@ -59,6 +69,7 @@ public class LessonButton : MonoBehaviour
             if(time >= pressTime)
             {
                 time = 0;
+                //if held down for the full press time, change the menu to the lesson's summary
                 Change();
             }
         }

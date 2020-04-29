@@ -2380,12 +2380,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lastMenu: {fileID: 1971784385}
   createPinScreen: {fileID: 627095235}
+  createPinInput1: {fileID: 2091196968}
+  createPinInput2: {fileID: 1411169925}
   checkPinInput: {fileID: 1470532935}
   checkPinError: {fileID: 5975934}
   checkPinInput2: {fileID: 757587099}
   checkPinError2: {fileID: 103769220}
-  createPinInput1: {fileID: 2091196968}
-  createPinInput2: {fileID: 1411169925}
   lessonTitle: {fileID: 2125526770}
   lessonText: {fileID: 1513864027}
   lessonMenu: {fileID: 947082086}
@@ -7368,7 +7368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df85f32eaae0324469a77126b6c0ffda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lessonEnabled: 1
+  lessonEnabled: 0
   lessonProgress: None
   lessonText: {fileID: 4900000, guid: e763517bf4d4ffe40b0c8c336d927d36, type: 3}
 --- !u!1 &1062504592
@@ -14264,7 +14264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df85f32eaae0324469a77126b6c0ffda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lessonEnabled: 1
+  lessonEnabled: 0
   lessonProgress: None
   lessonText: {fileID: 4900000, guid: 10f918032ad7da9438cb17b9c2472d4f, type: 3}
 --- !u!1 &5329972304522240972
@@ -14296,8 +14296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df85f32eaae0324469a77126b6c0ffda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lessonEnabled: 1
-  lessonProgress: Fail
+  lessonEnabled: 0
+  lessonProgress: None
   lessonText: {fileID: 4900000, guid: 5937b449f51776f4d8d55c6b84c3a117, type: 3}
 --- !u!4 &5329972304522240974
 Transform:
@@ -14342,8 +14342,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df85f32eaae0324469a77126b6c0ffda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lessonEnabled: 1
-  lessonProgress: Pass
+  lessonEnabled: 0
+  lessonProgress: None
   lessonText: {fileID: 4900000, guid: 00e25be79fe90d24d9643b3253beac78, type: 3}
 --- !u!1 &6716389693940150225
 GameObject:
@@ -14403,7 +14403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lessonEnabled: 0
-  lessonProgress: Fail
+  lessonProgress: None
   lessonText: {fileID: 4900000, guid: 15b9ba6ae07c10e4694ca4f04318bba9, type: 3}
 --- !u!1 &8934656443814571189
 GameObject:

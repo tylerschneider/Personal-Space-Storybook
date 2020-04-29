@@ -5,22 +5,14 @@ using UnityEngine.UI;
 
 public class SettingsButton : MonoBehaviour
 {
-    public static SettingsButton Instance;
     public bool pressed;
-
-    private void Start()
-    {
-        if(!Instance)
-        {
-            Instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-    }
 
     public void OnClick()
     {
+        //toggles the setting
         pressed = !pressed;
 
+        //changes the color of the button if it is enabled/disabled
         if (pressed)
         {
             GetComponent<Image>().color = Color.white;
