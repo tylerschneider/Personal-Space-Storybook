@@ -9,6 +9,8 @@ public class GuidanceCircle : MonoBehaviour
     public float strangerDistance = 10;
     public float friendDistance = 5;
     public float familyDistance = 3;
+    public Sprite guidanceCircleSprite;
+    public Sprite[] sprites;
 
     // Private fields
     private GameObject player;
@@ -73,6 +75,10 @@ public class GuidanceCircle : MonoBehaviour
                 currentClassification = Classification.Family;
                 Debug.Log("In friend distance");
             }
+        } else if (distanceToPlayer > strangerDistance) {
+            GetComponent<Renderer>().material = materials[3];
+                currentClassification = Classification.None;
+                Debug.Log("Far away");
         }
     }
 }
