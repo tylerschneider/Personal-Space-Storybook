@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -795,7 +795,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Setting 1
+  m_Text: Guidance Circle
 --- !u!222 &67611245
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5226,7 +5226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b3a2b1bd8ee6ae49a302a8281b91d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  option1: 0
+  GuidanceCircle: 1
 --- !u!4 &753191082
 Transform:
   m_ObjectHideFlags: 0
@@ -10024,8 +10024,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 753191081}
-        m_MethodName: SetOption1
+      - m_Target: {fileID: 1427246762}
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10035,8 +10035,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1427246762}
-        m_MethodName: OnClick
+      - m_Target: {fileID: 753191081}
+        m_MethodName: SetGuidanceCircle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10095,7 +10095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2673a4f20ede074fbe0c667cc87b589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pressed: 0
+  active: 0
 --- !u!1 &1427553960
 GameObject:
   m_ObjectHideFlags: 0

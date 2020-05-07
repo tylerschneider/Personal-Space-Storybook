@@ -129,6 +129,10 @@ public class ScenePlacer : MonoBehaviour
                     }
                     var pose = placeHits[0].pose;
                     placedObject = Instantiate(prefab, pose.position, pose.rotation);
+                    if(!SettingsManager.Instance.GuidanceCircle)
+                    {
+                        placedObject.transform.Find("GuidanceCircle").gameObject.SetActive(false);
+                    }
                     var anchorComponent = placedObject.AddComponent<ARAnchor>();
                     anchorComponent = anchorManager.AddAnchor(pose);
                     placedObject.transform.forward = -placedObject.transform.forward;

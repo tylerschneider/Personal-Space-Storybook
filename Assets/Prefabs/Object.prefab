@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6245224033848329666}
   - component: {fileID: 6245224033848329665}
   m_Layer: 0
-  m_Name: Main
+  m_Name: GuidanceCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6245224033907960048}
   - component: {fileID: 6245224033907960043}
   m_Layer: 0
-  m_Name: Cube 1
+  m_Name: Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
