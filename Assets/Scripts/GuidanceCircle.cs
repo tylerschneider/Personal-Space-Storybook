@@ -5,7 +5,7 @@ using UnityEngine;
 public class GuidanceCircle : MonoBehaviour
 {
     // Public fields
-    public Material[] materials;
+    //public Material[] materials;
     public float strangerDistance = 10;
     public float friendDistance = 5;
     public float familyDistance = 3;
@@ -36,6 +36,10 @@ public class GuidanceCircle : MonoBehaviour
         currentClassification = Classification.None;
         //InvokeRepeating("classifyDistance", 1f, 1f);
         guidanceCircleSprite = guidanceCircleObject.GetComponent<SpriteRenderer>();
+
+        strangerDistance *= guidanceCircleObject.transform.localScale.x;
+        friendDistance *= guidanceCircleObject.transform.localScale.x;
+        familyDistance *= guidanceCircleObject.transform.localScale.x;
     }
 
     // Update is called once per frame
@@ -55,7 +59,7 @@ public class GuidanceCircle : MonoBehaviour
         {
             if (currentClassification != Classification.Stranger)
             {
-                GetComponent<Renderer>().material = materials[0];
+                //GetComponent<Renderer>().material = materials[0];
                 guidanceCircleSprite.sprite = sprites[0];
                 currentClassification = Classification.Stranger;
                 Debug.Log("In stranger distance");
@@ -65,7 +69,7 @@ public class GuidanceCircle : MonoBehaviour
         {
             if (currentClassification != Classification.Friend)
             {
-                GetComponent<Renderer>().material = materials[1];
+                //GetComponent<Renderer>().material = materials[1];
                 guidanceCircleSprite.sprite = sprites[1];
                 currentClassification = Classification.Friend;
                 Debug.Log("In family distance");
@@ -75,13 +79,13 @@ public class GuidanceCircle : MonoBehaviour
         {
             if (currentClassification != Classification.Family)
             {
-                GetComponent<Renderer>().material = materials[2];
+                //GetComponent<Renderer>().material = materials[2];
                 guidanceCircleSprite.sprite = sprites[2];
                 currentClassification = Classification.Family;
                 Debug.Log("In friend distance");
             }
         } else if (distanceToPlayer > strangerDistance) {
-            GetComponent<Renderer>().material = materials[3];
+            //GetComponent<Renderer>().material = materials[3];
             guidanceCircleSprite.sprite = sprites[3];
                 currentClassification = Classification.None;
                 Debug.Log("Far away");

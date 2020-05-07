@@ -34,7 +34,7 @@ public class LessonButton : MonoBehaviour
         }
         else
         {
-            //put lesson loading code for students here
+            LessonManager.Instance.selectedLesson = lesson.GetComponent<Lesson>();
             SceneManager.LoadScene("Main");
             MenuManager.Instance.ChangeMenu(null);
         }

@@ -17,14 +17,17 @@ public class ScenePlacer : MonoBehaviour
     [SerializeField]
     private ARAnchorManager anchorManager;
     [SerializeField]
-    private GameObject prefab;
-    [SerializeField]
     private Material previewMaterial;
 
     public GameObject startButton;
     public GameObject placeButton;
     public GameObject confirmButton;
     public GameObject removeButton;
+    public GameObject endScreen;
+    public GameObject retryScreen;
+    public GameObject backButton;
+
+    private int score = 100;
 
     private GameObject previewObject = null;
     public GameObject placedObject = null;
@@ -50,7 +53,7 @@ public class ScenePlacer : MonoBehaviour
             Instance = this;
         }
 
-        prefab = lesson.placedObject;
+        lesson = LessonManager.Instance.selectedLesson;
     }
 
     void OnEnable()
@@ -89,7 +92,7 @@ public class ScenePlacer : MonoBehaviour
                 //if no preview object yet
                 if (previewObject == null)
                 {
-                    previewObject = Instantiate(prefab);
+                    previewObject = Instantiate(lesson.placedObject);
                     //check that the guidance circle is enabled
                     if (!SettingsManager.Instance.GuidanceCircle)
                     {
@@ -111,7 +114,10 @@ public class ScenePlacer : MonoBehaviour
                 previewObject.SetActive(true);
                 previewObject.transform.position = pose.position;
                 previewObject.transform.rotation = pose.rotation;
-                previewObject.transform.forward = -previewObject.transform.forward;
+                /*Vector3 rotation = previewObject.transform.rotation.eulerAngles;
+                rotation.y += 180;
+                previewObject.transform.Rotate(rotation);*/
+                //previewObject.transform.forward = -previewObject.transform.forward;
             }
             else
             {
@@ -127,6 +133,13 @@ public class ScenePlacer : MonoBehaviour
             if(!GetComponent<AudioSource>().isPlaying)
             {
                 EnableConfirmButton();
+            }
+        }
+        else if (state == PlacerState.Done)
+        {
+            if (!GetComponent<AudioSource>().isPlaying)
+            {
+                EnableEndScreen();
             }
         }
     }
@@ -171,14 +184,14 @@ public class ScenePlacer : MonoBehaviour
                 cloud.gameObject.SetActive(false);
             }
             var pose = placeHits[0].pose;
-            placedObject = Instantiate(prefab, pose.position, pose.rotation);
+            placedObject = Instantiate(lesson.placedObject, pose.position, pose.rotation);
             if (!SettingsManager.Instance.GuidanceCircle)
             {
                 placedObject.transform.Find("GuidanceCircle").gameObject.SetActive(false);
             }
             var anchorComponent = placedObject.AddComponent<ARAnchor>();
             anchorComponent = anchorManager.AddAnchor(pose);
-            placedObject.transform.forward = -placedObject.transform.forward;
+            //placedObject.transform.forward = -placedObject.transform.forward;
 
             GetComponent<AudioSource>().clip = lesson.clips[0];
             GetComponent<AudioSource>().Play();
@@ -194,20 +207,40 @@ public class ScenePlacer : MonoBehaviour
         confirmButton.SetActive(true);
     }
 
+    public void EnableEndScreen()
+    {
+        endScreen.SetActive(true);
+    }
+
     public void OnConfirmButton()
     {
         //code for checking answer
-        GuidanceCircle data = placedObject.GetComponent<GuidanceCircle>();
+        GuidanceCircle data = placedObject.GetComponentInChildren<GuidanceCircle>();
         if (data.currentClassification.ToString() == lesson.answer)
         {
             //remove all buttons
             confirmButton.SetActive(false);
-            removeButton.SetActive(false);
-
-            state = PlacerState.Done;
+            backButton.SetActive(false);
 
             GetComponent<AudioSource>().clip = lesson.clips[1];
             GetComponent<AudioSource>().Play();
+
+            state = PlacerState.Done;
+
+            LessonManager.Instance.transform.Find(lesson.lessonName).GetComponent<Lesson>().lessonProgress = "Pass";
+            LessonManager.Instance.CreateLessonHistory(lesson.lessonName, score);
+        }
+        else
+        {
+            score -= 10;
+            if(score <= 0)
+            {
+                score = 0;
+            }
+            LessonManager.Instance.transform.Find(lesson.lessonName).GetComponent<Lesson>().lessonProgress = "Fail";
+
+            confirmButton.SetActive(false);
+            retryScreen.SetActive(true);
         }
     }
 
@@ -219,6 +252,12 @@ public class ScenePlacer : MonoBehaviour
             placedObject = null;
             state = PlacerState.Placing;
         }
+    }
+
+    public void OnRetryButton()
+    {
+        confirmButton.SetActive(true);
+        retryScreen.SetActive(false);
     }
 
     public void BackButton()

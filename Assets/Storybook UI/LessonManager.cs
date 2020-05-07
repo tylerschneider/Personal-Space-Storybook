@@ -12,6 +12,8 @@ public class LessonManager : MonoBehaviour
     //!! for debug !!
     int counter = 0;
 
+    public Lesson selectedLesson;
+
     void Start()
     {
         if (!Instance)
