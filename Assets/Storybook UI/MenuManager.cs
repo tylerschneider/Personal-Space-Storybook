@@ -61,22 +61,23 @@ public class MenuManager : MonoBehaviour
 
         foreach (Transform menu in transform)
         {
-            //don't disable the background
-            if(menu.gameObject.name != "Background")
+            //check each menu and disable the active one
+            if (menu.gameObject != selectedMenu && menu.gameObject.activeSelf)
             {
-                //check each menu and disable the active one
-                if(menu.gameObject != selectedMenu && menu.gameObject.activeSelf)
-                {
-                    menu.gameObject.SetActive(false);
-                    lastMenu = menu.gameObject;
-                }
-                //enable the menu that was selected to be shown
-                else if(menu.gameObject == selectedMenu)
-                {
-                    menu.gameObject.SetActive(true);
-                }
+                menu.gameObject.SetActive(false);
+                lastMenu = menu.gameObject;
             }
+            //enable the menu that was selected to be shown
+            else if (menu.gameObject == selectedMenu)
+            {
+                menu.gameObject.SetActive(true);
+            }
+        }
 
+        //don't disable the background
+        if (selectedMenu != null)
+        {
+            transform.Find("Background").gameObject.SetActive(true);
         }
     }
 

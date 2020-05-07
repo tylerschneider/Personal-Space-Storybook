@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using UnityEngine.UI;
 
 public class ScenePlacer : MonoBehaviour
 {
@@ -91,13 +92,13 @@ public class ScenePlacer : MonoBehaviour
         }
     }
 
-    public void OnButton(TMPro.TextMeshProUGUI buttonText)
+    public void OnButton(Text buttonText)
     {
         switch (state)
         {
             case PlacerState.Ready:     // "Place Object" clicked
                 state = PlacerState.Placing;
-                buttonText.text = "Place";
+                buttonText.text = "Confirm";
                 planeManager.enabled = true;
                 pointCloudManager.enabled = true;
                 foreach (var plane in planeManager.trackables)
@@ -109,7 +110,7 @@ public class ScenePlacer : MonoBehaviour
                     cloud.gameObject.SetActive(true);
                 }
                 break;
-            case PlacerState.Placing:   // "Place" clicked
+            case PlacerState.Placing:   // "Confirm" clicked
                 var placeHits = new List<ARRaycastHit>();
                 raycastManager.Raycast(new Ray(Camera.main.gameObject.transform.position, Camera.main.gameObject.transform.forward), placeHits, TrackableType.Planes);
                 if (placeHits.Count > 0)

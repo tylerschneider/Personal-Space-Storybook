@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LessonButton : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class LessonButton : MonoBehaviour
         else
         {
             //put lesson loading code for students here
+            SceneManager.LoadScene("Main");
+            MenuManager.Instance.ChangeMenu(null);
         }
 
     }
