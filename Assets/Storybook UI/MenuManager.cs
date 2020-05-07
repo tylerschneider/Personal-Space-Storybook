@@ -38,7 +38,7 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        if(!Instance)
+        if (!Instance)
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
@@ -95,7 +95,7 @@ public class MenuManager : MonoBehaviour
     public void CheckPin(GameObject selectedMenu)
     {
         //get the pin and compare it to the user's input
-        if(GetPin().ToString() == checkPinInput.text)
+        if (GetPin().ToString() == checkPinInput.text)
         {
             //if matching, go to the next menu
             ChangeMenu(selectedMenu);

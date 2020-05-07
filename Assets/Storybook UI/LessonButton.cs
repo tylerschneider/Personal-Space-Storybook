@@ -14,13 +14,13 @@ public class LessonButton : MonoBehaviour
     public void OnClick()
     {
         //check if the button is in the instructor menu
-        if(lessonLoader.instructor)
+        if (lessonLoader.instructor)
         {
             //toggle the button
             lesson.GetComponent<Lesson>().lessonEnabled = !lesson.GetComponent<Lesson>().lessonEnabled;
 
             //change the button's color when enabled/disabled
-            if(lesson.GetComponent<Lesson>().lessonEnabled)
+            if (lesson.GetComponent<Lesson>().lessonEnabled)
             {
                 GetComponent<Image>().color = Color.white;
             }
@@ -65,11 +65,11 @@ public class LessonButton : MonoBehaviour
     private void Update()
     {
         //tracks how long a button has been held down
-        if(pressed)
+        if (pressed)
         {
             time += Time.deltaTime;
 
-            if(time >= pressTime)
+            if (time >= pressTime)
             {
                 time = 0;
                 //if held down for the full press time, change the menu to the lesson's summary

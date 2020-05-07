@@ -16,11 +16,11 @@ public class GuidanceCircle : MonoBehaviour
     // Private fields
     private GameObject player;
     private float distanceToPlayer;
-    private enum Classification
+    public enum Classification
     {
         Stranger, Friend, Family, None
     }
-    private Classification currentClassification;
+    public Classification currentClassification;
 
     // Start is called before the first frame update
     void Start()

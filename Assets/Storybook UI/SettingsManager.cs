@@ -12,7 +12,7 @@ public class SettingsManager : MonoBehaviour
 
     private void Start()
     {
-        if(!Instance)
+        if (!Instance)
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
