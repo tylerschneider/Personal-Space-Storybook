@@ -96,7 +96,7 @@ public class ScenePlacer : MonoBehaviour
                     //check that the guidance circle is enabled
                     if (!SettingsManager.Instance.GuidanceCircle)
                     {
-                        previewObject.transform.Find("GuidanceCircle").gameObject.SetActive(false);
+                        previewObject.GetComponentInChildren<GuidanceCircle>().guidanceCircleObject.GetComponent<SpriteRenderer>().enabled = false;
                     }
                     //set materials for the preview object to the preview material
                     previewObject.GetComponent<Renderer>().material = previewMaterial;
@@ -187,7 +187,7 @@ public class ScenePlacer : MonoBehaviour
             placedObject = Instantiate(lesson.placedObject, pose.position, pose.rotation);
             if (!SettingsManager.Instance.GuidanceCircle)
             {
-                placedObject.transform.Find("GuidanceCircle").gameObject.SetActive(false);
+                placedObject.GetComponentInChildren<GuidanceCircle>().guidanceCircleObject.GetComponent<SpriteRenderer>().enabled = false;
             }
             var anchorComponent = placedObject.AddComponent<ARAnchor>();
             anchorComponent = anchorManager.AddAnchor(pose);
