@@ -5,5 +5,5 @@ using UnityEngine;
 [System.Serializable]
 public class PIN
 {
-    public int pinNumber;
+    public string pinNumber;
 }

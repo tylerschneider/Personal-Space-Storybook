@@ -22,7 +22,10 @@ public class SettingsManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        LoadSettings();
+        if (File.Exists(Application.persistentDataPath + "/settings.save"))
+        {
+            LoadSettings();
+        }
     }
 
     public void SetGuidanceCircle()

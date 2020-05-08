@@ -49,7 +49,7 @@ public class MenuManager : MonoBehaviour
         }
 
         //if no pin is found, the app will start on the create pin screen
-        if (GetPin() == 1000000000)
+        if (GetPin() == "None")
         {
             ChangeMenu(createPinScreen);
         }
@@ -148,7 +148,7 @@ public class MenuManager : MonoBehaviour
         PIN pin = new PIN();
 
         //save the user's input as the PIN number in the userData file
-        pin.pinNumber = int.Parse(input.GetComponent<InputField>().text);
+        pin.pinNumber = input.GetComponent<InputField>().text;
 
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/userData.save");
@@ -159,7 +159,7 @@ public class MenuManager : MonoBehaviour
         input.GetComponent<InputField>().text = "";
     }
 
-    public int GetPin()
+    public string GetPin()
     {
         //check if a saved PIN exists
         if (File.Exists(Application.persistentDataPath + "/userdata.save"))
@@ -170,7 +170,7 @@ public class MenuManager : MonoBehaviour
             PIN pin = (PIN)bf.Deserialize(file);
             file.Close();
 
-            int pinNumber = pin.pinNumber;
+            string pinNumber = pin.pinNumber;
 
             return pinNumber;
         }
@@ -179,7 +179,7 @@ public class MenuManager : MonoBehaviour
             //return 1000000000 if no pin (the user can only enter up to 5 numbers)
             Debug.Log("No PIN saved!");
 
-            return 1000000000;
+            return "None";
         }
     }
 }
