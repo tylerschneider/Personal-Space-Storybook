@@ -96,7 +96,7 @@ public class ScenePlacer : MonoBehaviour
                     //check that the guidance circle is enabled
                     if (!SettingsManager.Instance.GuidanceCircle)
                     {
-                        previewObject.GetComponentInChildren<GuidanceCircle>().guidanceCircleObject.GetComponent<SpriteRenderer>().enabled = false;
+                        previewObject.GetComponentInChildren<DistanceManager>().guidanceCircleObject.GetComponent<SpriteRenderer>().enabled = false;
                     }
                     //set materials for the preview object to the preview material
                     previewObject.GetComponent<Renderer>().material = previewMaterial;
@@ -187,7 +187,7 @@ public class ScenePlacer : MonoBehaviour
             placedObject = Instantiate(lesson.placedObject, pose.position, pose.rotation);
             if (!SettingsManager.Instance.GuidanceCircle)
             {
-                placedObject.GetComponentInChildren<GuidanceCircle>().guidanceCircleObject.GetComponent<SpriteRenderer>().enabled = false;
+                placedObject.GetComponentInChildren<DistanceManager>().guidanceCircleObject.GetComponent<SpriteRenderer>().enabled = false;
             }
             var anchorComponent = placedObject.AddComponent<ARAnchor>();
             anchorComponent = anchorManager.AddAnchor(pose);
@@ -215,8 +215,8 @@ public class ScenePlacer : MonoBehaviour
     public void OnConfirmButton()
     {
         //code for checking answer
-        GuidanceCircle data = placedObject.GetComponentInChildren<GuidanceCircle>();
-        if (data.currentClassification.ToString() == lesson.answer)
+        DistanceManager data = placedObject.GetComponentInChildren<DistanceManager>();
+        if (data.currentClassification == lesson.answer)
         {
             //remove all buttons
             confirmButton.SetActive(false);
