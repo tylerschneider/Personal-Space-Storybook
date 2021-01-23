@@ -1,9 +1,6 @@
-[The scene fades from black. The player’s mother appears as a pop-up, looking happy.]
 Mother: Good morning dear! Are you ready for your big day?
-[The player’s mother expression changes from happy to concerned.]
+
 Mother: What, you don’t remember? Come closer and I’ll explain what’s going on.
-[A guidance circle appears surrounding the player’s mother with the family ring highlighted.
-When the player enters the appropriate range, the dialogue continues.]
+
 Mother: Today’s the day you get to pick your Dragonkin! Now hurry, head off to the lab and
 meet Professor Pineapple!
-[A door pops up and opens, the scene fading to white.]

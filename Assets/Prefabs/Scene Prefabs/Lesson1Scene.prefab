@@ -160,11 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece85f772748a0947b8d6863e060a1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strangerDistance: 10
-  friendDistance: 5
-  familyDistance: 3
   guidanceCircleObject: {fileID: 3743285644904170108}
-  guidanceCircleSprite: {fileID: 0}
   sprites:
   - {fileID: 21300000, guid: f638c8c7c0b21f84a830416b5b8d4bfa, type: 3}
   - {fileID: 21300000, guid: 549350d2eabd77942b318f40fb0fe2e9, type: 3}
