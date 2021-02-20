@@ -13,6 +13,7 @@ public class LessonManager : MonoBehaviour
     int counter = 0;
 
     public Lesson selectedLesson;
+    public Timer timer;
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class LessonManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
+            timer = Timer.instance;
         }
         else
         {
@@ -39,17 +41,31 @@ public class LessonManager : MonoBehaviour
         }
     }
 
+    public void BeginTimer()
+    {
+        timer.BeginTimer();
+    }
+    public void EndTimer()
+    {
+        timer.StopTimer();
+    }
+    public void ResetTimer()
+    {
+        timer.ResetTimer();
+    }
+
     //!! for debug !!
     public void CreateRandomLesson()
     {
         int num1 = Random.Range(0, 10);
         int num2 = Random.Range(0, 100);
-        CreateLessonHistory("Lesson " + counter, num2);
+        CreateLessonHistory("Lesson " + counter, num2, timer.timePlayingStr);
         counter++;
     }
 
-    public void CreateLessonHistory(string lesson, int score)
+    public void CreateLessonHistory(string lesson, int attempts, string time)
     {
+        time = timer.timePlayingStr;
         //create a new guid for the file name
         System.Guid guid = System.Guid.NewGuid();
 
@@ -57,7 +73,8 @@ public class LessonManager : MonoBehaviour
 
         data.date = System.DateTime.Now;
         data.lesson = lesson;
-        data.score = score;
+        data.attempts = attempts;
+        data.time = time;
         data.note = "";
         data.guid = guid;
 

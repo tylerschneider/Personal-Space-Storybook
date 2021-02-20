@@ -11,6 +11,7 @@ public class LessonButton : MonoBehaviour
     public float pressTime = 1f;
     public float time;
     public bool pressed;
+
     public void OnClick()
     {
         //check if the button is in the instructor menu
@@ -44,6 +45,7 @@ public class LessonButton : MonoBehaviour
     {
         //start holding
         pressed = true;
+
     }
     public void OffHold()
     {
@@ -60,6 +62,7 @@ public class LessonButton : MonoBehaviour
         {
             MenuManager.Instance.LessonMenu(lesson);
         }
+        LessonManager.Instance.BeginTimer();
     }
 
     private void Update()
