@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LessonButton : MonoBehaviour
 {
+    public static LessonButton instance;
     public GameObject lesson;
     public LessonLoader lessonLoader;
     public float pressTime = 1f;
@@ -47,6 +48,7 @@ public class LessonButton : MonoBehaviour
         pressed = true;
 
     }
+
     public void OffHold()
     {
         //stop holding and reset the timer
@@ -63,6 +65,7 @@ public class LessonButton : MonoBehaviour
             MenuManager.Instance.LessonMenu(lesson);
         }
         LessonManager.Instance.BeginTimer();
+        LessonManager.Instance.AttemptsIncrease();
     }
 
     private void Update()

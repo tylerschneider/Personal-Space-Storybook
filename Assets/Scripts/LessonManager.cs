@@ -14,7 +14,7 @@ public class LessonManager : MonoBehaviour
 
     public Lesson selectedLesson;
     public Timer timer;
-
+    private int lessonAttempts;
     void Start()
     {
         if (!Instance)
@@ -53,13 +53,19 @@ public class LessonManager : MonoBehaviour
     {
         timer.ResetTimer();
     }
-
+    public void AttemptsIncrease()
+    {
+        lessonAttempts++; 
+    }
+    public void ResetAttempts()
+    {
+        lessonAttempts = 0;
+    }
     //!! for debug !!
     public void CreateRandomLesson()
     {
-        int num1 = Random.Range(0, 10);
-        int num2 = Random.Range(0, 100);
-        CreateLessonHistory("Lesson " + counter, num2, timer.timePlayingStr);
+
+        CreateLessonHistory("Lesson " + counter, lessonAttempts, timer.timePlayingStr);
         counter++;
     }
 
@@ -83,6 +89,7 @@ public class LessonManager : MonoBehaviour
         FileStream file = File.Create(Application.persistentDataPath + "/data/" + guid + ".save");
         bf.Serialize(file, data);
         file.Close();
+        ResetAttempts();
     }
 
     public void UpdateLessonNote(string note, System.Guid guid)
