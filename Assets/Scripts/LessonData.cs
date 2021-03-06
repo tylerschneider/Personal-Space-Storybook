@@ -8,7 +8,8 @@ public class LessonData
 {
     public System.DateTime date;
     public string lesson;
-    public int score;
+    public int attempts;
     public string note;
+    public string time;
     public System.Guid guid;
 }

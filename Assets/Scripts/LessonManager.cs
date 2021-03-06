@@ -13,13 +13,15 @@ public class LessonManager : MonoBehaviour
     int counter = 0;
 
     public Lesson selectedLesson;
-
+    public Timer timer;
+    private int lessonAttempts;
     void Start()
     {
         if (!Instance)
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
+            timer = Timer.instance;
         }
         else
         {
@@ -39,17 +41,37 @@ public class LessonManager : MonoBehaviour
         }
     }
 
+    public void BeginTimer()
+    {
+        timer.BeginTimer();
+    }
+    public void EndTimer()
+    {
+        timer.StopTimer();
+    }
+    public void ResetTimer()
+    {
+        timer.ResetTimer();
+    }
+    public void AttemptsIncrease()
+    {
+        lessonAttempts++; 
+    }
+    public void ResetAttempts()
+    {
+        lessonAttempts = 0;
+    }
     //!! for debug !!
     public void CreateRandomLesson()
     {
-        int num1 = Random.Range(0, 10);
-        int num2 = Random.Range(0, 100);
-        CreateLessonHistory("Lesson " + counter, num2);
+
+        CreateLessonHistory("Lesson " + counter, lessonAttempts, timer.timePlayingStr);
         counter++;
     }
 
-    public void CreateLessonHistory(string lesson, int score)
+    public void CreateLessonHistory(string lesson, int attempts, string time)
     {
+        time = timer.timePlayingStr;
         //create a new guid for the file name
         System.Guid guid = System.Guid.NewGuid();
 
@@ -57,7 +79,8 @@ public class LessonManager : MonoBehaviour
 
         data.date = System.DateTime.Now;
         data.lesson = lesson;
-        data.score = score;
+        data.attempts = attempts;
+        data.time = time;
         data.note = "";
         data.guid = guid;
 
@@ -66,6 +89,7 @@ public class LessonManager : MonoBehaviour
         FileStream file = File.Create(Application.persistentDataPath + "/data/" + guid + ".save");
         bf.Serialize(file, data);
         file.Close();
+        ResetAttempts();
     }
 
     public void UpdateLessonNote(string note, System.Guid guid)

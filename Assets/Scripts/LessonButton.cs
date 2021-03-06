@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class LessonButton : MonoBehaviour
 {
+    public static LessonButton instance;
     public GameObject lesson;
     public LessonLoader lessonLoader;
     public float pressTime = 1f;
     public float time;
     public bool pressed;
+
     public void OnClick()
     {
         //check if the button is in the instructor menu
@@ -44,7 +46,9 @@ public class LessonButton : MonoBehaviour
     {
         //start holding
         pressed = true;
+
     }
+
     public void OffHold()
     {
         //stop holding and reset the timer
@@ -60,6 +64,8 @@ public class LessonButton : MonoBehaviour
         {
             MenuManager.Instance.LessonMenu(lesson);
         }
+        LessonManager.Instance.BeginTimer();
+        LessonManager.Instance.AttemptsIncrease();
     }
 
     private void Update()
