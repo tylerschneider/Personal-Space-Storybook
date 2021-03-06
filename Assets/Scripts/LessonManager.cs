@@ -39,19 +39,28 @@ public class LessonManager : MonoBehaviour
         {
             LoadEnabledLessons();
         }
+        selectedLesson = this.gameObject.transform.GetChild(0).GetComponent<Lesson>();
     }
+
+    public void SelectedIndex()
+    {
+        selectedLesson = this.gameObject.transform.GetChild(0).GetComponent<Lesson>();
+
+    }
+
+
 
     public void BeginTimer()
     {
-        timer.BeginTimer();
+        selectedLesson.BeginTimer();
     }
     public void EndTimer()
     {
-        timer.StopTimer();
+        selectedLesson.StopTimer();
     }
     public void ResetTimer()
     {
-        timer.ResetTimer();
+        selectedLesson.ResetTimer();
     }
     public void AttemptsIncrease()
     {
@@ -64,14 +73,13 @@ public class LessonManager : MonoBehaviour
     //!! for debug !!
     public void CreateRandomLesson()
     {
-
-        CreateLessonHistory("Lesson " + counter, lessonAttempts, timer.timePlayingStr);
+        Debug.Log(selectedLesson.timeString() + " created");
+        CreateLessonHistory(selectedLesson.lessonName, lessonAttempts, selectedLesson.timeString());
         counter++;
     }
 
     public void CreateLessonHistory(string lesson, int attempts, string time)
     {
-        time = timer.timePlayingStr;
         //create a new guid for the file name
         System.Guid guid = System.Guid.NewGuid();
 

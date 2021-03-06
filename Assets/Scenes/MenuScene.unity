@@ -4441,7 +4441,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1703863537}
         m_TargetAssemblyTypeName: LessonManager, Assembly-CSharp
-        m_MethodName: ResetTimer
+        m_MethodName: EndTimer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11593,6 +11593,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1703863537}
+        m_TargetAssemblyTypeName: LessonManager, Assembly-CSharp
+        m_MethodName: ResetTimer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1703863537}
+        m_TargetAssemblyTypeName: LessonManager, Assembly-CSharp
+        m_MethodName: ResetAttempts
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1575645758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15132,6 +15156,7 @@ MonoBehaviour:
   placedObject: {fileID: 2647216631244201492, guid: 6742cb7aeae1552478e9e848bd492332,
     type: 3}
   lessonName: Lesson 1
+  timePlayingStr: 
 --- !u!1 &5329972304522240972
 GameObject:
   m_ObjectHideFlags: 0
@@ -15171,6 +15196,7 @@ MonoBehaviour:
   placedObject: {fileID: 5349509109877635419, guid: 80cb5024c6347ba408ae1b3b8f061c6f,
     type: 3}
   lessonName: Lesson 3
+  timePlayingStr: 
 --- !u!4 &5329972304522240974
 Transform:
   m_ObjectHideFlags: 0
@@ -15224,6 +15250,7 @@ MonoBehaviour:
   placedObject: {fileID: 4104044463227926280, guid: 9286800481b477f4394587c3dd1c34d4,
     type: 3}
   lessonName: Lesson 2
+  timePlayingStr: 
 --- !u!1 &6716389693940150225
 GameObject:
   m_ObjectHideFlags: 0

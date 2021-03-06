@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class LessonButton : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class LessonButton : MonoBehaviour
     public float pressTime = 1f;
     public float time;
     public bool pressed;
+    public int selectedIndex;
 
     public void OnClick()
     {
@@ -40,7 +42,7 @@ public class LessonButton : MonoBehaviour
             SceneManager.LoadScene("Main");
             MenuManager.Instance.ChangeMenu(null);
         }
-
+        //selectedIndex = lesson.GetComponent<Lesson>()
     }
     public void OnHold()
     {
@@ -66,6 +68,7 @@ public class LessonButton : MonoBehaviour
         }
         LessonManager.Instance.BeginTimer();
         LessonManager.Instance.AttemptsIncrease();
+
     }
 
     private void Update()
@@ -88,4 +91,8 @@ public class LessonButton : MonoBehaviour
         }
 
     }
+
+
+
+
 }
