@@ -63,7 +63,7 @@ public class LessonManager : MonoBehaviour
 
         //save the lesson data file in the data folder
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/data/" + guid + ".save");
+        FileStream file = File.Create(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/" + guid + ".save");
         bf.Serialize(file, data);
         file.Close();
     }
@@ -72,7 +72,7 @@ public class LessonManager : MonoBehaviour
     {
         //read the lesson data file with the given guid
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + "/data/" + guid + ".save", FileMode.Open);
+        FileStream file = File.Open(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/" + guid + ".save", FileMode.Open);
         LessonData data = (LessonData)bf.Deserialize(file);
         file.Close();
 
@@ -80,7 +80,7 @@ public class LessonManager : MonoBehaviour
         data.note = note;
 
         //save over the existing data file with the updated one
-        file = File.Create(Application.persistentDataPath + "/data/" + guid + ".save");
+        file = File.Create(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/" + guid + ".save");
         bf.Serialize(file, data);
         file.Close();
     }
@@ -125,7 +125,7 @@ public class LessonManager : MonoBehaviour
     public void DeleteAllHistory()
     {
         //get all the files in the data folder
-        DirectoryInfo info = new DirectoryInfo(Application.persistentDataPath + "/data/");
+        DirectoryInfo info = new DirectoryInfo(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/");
         FileInfo[] files = info.GetFiles();
 
         //delete each file

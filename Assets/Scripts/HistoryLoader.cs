@@ -17,7 +17,7 @@ public class HistoryLoader : MonoBehaviour
     public Sprite pencil;
     private void OnEnable()
     {
-        DirectoryInfo info = new DirectoryInfo(Application.persistentDataPath + "/data/");
+        DirectoryInfo info = new DirectoryInfo(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/");
 
         //load the files in the data folder and store them in the files array in order of creation time (newest first)
         FileInfo[] files = info.GetFiles().OrderByDescending(p => p.CreationTime).ToArray();
