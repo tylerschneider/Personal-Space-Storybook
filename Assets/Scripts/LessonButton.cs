@@ -42,15 +42,19 @@ public class LessonButton : MonoBehaviour
             SceneManager.LoadScene("Main");
             MenuManager.Instance.ChangeMenu(null);
         }
-        //selectedIndex = lesson.GetComponent<Lesson>()
+        LessonManager.Instance.SelectedIndex(GetIndexFromString(lesson.name)); 
     }
     public void OnHold()
     {
         //start holding
         pressed = true;
-
+        LessonManager.Instance.SelectedIndex(GetIndexFromString(lesson.name));
     }
-
+    private int GetIndexFromString(string name)
+    {
+        int ret = int.Parse(name.Substring(7, 1));
+        return ret;
+    }
     public void OffHold()
     {
         //stop holding and reset the timer

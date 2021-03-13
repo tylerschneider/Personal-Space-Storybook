@@ -16,6 +16,7 @@ public class Lesson : MonoBehaviour
     private TimeSpan timePlaying;
     private bool isPlaying;
     private float elapsedTime;
+    public int Attempt;
 
     public string Test()
     {
@@ -28,6 +29,7 @@ public class Lesson : MonoBehaviour
     {
         isPlaying = false;
         elapsedTime = 0f;
+        Attempt = 0;
     }
 
     public void BeginTimer()
@@ -47,6 +49,7 @@ public class Lesson : MonoBehaviour
     {
         isPlaying = false;
         elapsedTime = 0f;
+        Attempt = 0;
     }
 
     public string timeString()

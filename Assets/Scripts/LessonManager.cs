@@ -39,13 +39,12 @@ public class LessonManager : MonoBehaviour
         {
             LoadEnabledLessons();
         }
-        selectedLesson = this.gameObject.transform.GetChild(0).GetComponent<Lesson>();
     }
 
-    public void SelectedIndex()
+    public void SelectedIndex(int index)
     {
-        selectedLesson = this.gameObject.transform.GetChild(0).GetComponent<Lesson>();
-
+        selectedLesson = this.gameObject.transform.GetChild(index - 1).GetComponent<Lesson>();
+        Debug.Log("selected " + selectedLesson.name);
     }
 
 
@@ -64,17 +63,16 @@ public class LessonManager : MonoBehaviour
     }
     public void AttemptsIncrease()
     {
-        lessonAttempts++; 
+        selectedLesson.Attempt++;
+        Debug.Log("selected " + selectedLesson.name);
+        Debug.Log(selectedLesson.Attempt);
     }
-    public void ResetAttempts()
-    {
-        lessonAttempts = 0;
-    }
+
     //!! for debug !!
     public void CreateRandomLesson()
     {
         Debug.Log(selectedLesson.timeString() + " created");
-        CreateLessonHistory(selectedLesson.lessonName, lessonAttempts, selectedLesson.timeString());
+        CreateLessonHistory(selectedLesson.lessonName, selectedLesson.Attempt, selectedLesson.timeString());
         counter++;
     }
 
@@ -97,7 +95,6 @@ public class LessonManager : MonoBehaviour
         FileStream file = File.Create(Application.persistentDataPath + "/data/" + guid + ".save");
         bf.Serialize(file, data);
         file.Close();
-        ResetAttempts();
     }
 
     public void UpdateLessonNote(string note, System.Guid guid)
