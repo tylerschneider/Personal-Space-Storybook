@@ -1,0 +1,28 @@
+{
+	"lines":
+	[
+		{
+			"key": "professor-one",
+			"line": "Now young one, go ahead and pick your Dragonkin! Your friend will pick after you."
+		
+		},
+		{
+			"key": "professor-two",
+			"line": "We have Graggle the terra type, Fina the aqua type, and Chindin the pyro type. Go
+ahead and pick you new friend."
+		
+		},
+		{
+			"key": "professor-three",
+			"line": "Ah, so you've picked [dragon name]? Excellent choice young one! I bet you two will
+become the best of friends!"
+		
+		}
+	
+	]
+
+}
+
+
+
+
