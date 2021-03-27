@@ -1,0 +1,20 @@
+{
+	"lines":
+	[
+		{
+			"key": "mom-one",
+			"line": "Good morning dear! Are you ready for your big day?"
+		
+		},
+		{
+			"key": "mom-two",
+			"line": "What, your don't remember? Come closer and I'll explain what's going on."
+		},
+		{
+			"key": "mom-three",
+			"line": "Today's the day you get to pick your Dragonkin! Now hurry, head off to the lab and meet Professor Pineapple!"
+		}
+	
+	]
+
+}
