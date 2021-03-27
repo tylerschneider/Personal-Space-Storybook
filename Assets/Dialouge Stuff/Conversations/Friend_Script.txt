@@ -1,0 +1,31 @@
+{
+	"lines":
+	[
+		{
+			"key": "friend-one",
+			"line": "Hey friendo! You on your way to meet Professor Pineapple and pick your Dragonkin?
+			Awesome!"
+		
+		},
+		{
+			"key": "friend-two",
+			"line": "I already know which one I want! Come a little closer so I can tell you."
+		
+		},
+		{
+			"key": "friend-three",
+			"line": "You see, I really want the aqua type, Fina! But let's hurry on to the lab, pal, we really
+		wouldn't want to miss out on choosing!"
+		
+		}
+	
+	]
+
+}
+
+
+
+
+
+
+
