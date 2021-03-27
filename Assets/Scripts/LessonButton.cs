@@ -20,6 +20,7 @@ public class LessonButton : MonoBehaviour
         //check if the button is in the instructor menu
         if (lessonLoader.instructor)
         {
+            Debug.Log("instructor " + lessonLoader.instructor);
             //toggle the button
             lesson.GetComponent<Lesson>().lessonEnabled = !lesson.GetComponent<Lesson>().lessonEnabled;
 

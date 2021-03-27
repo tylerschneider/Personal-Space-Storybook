@@ -10,8 +10,13 @@ public class LessonLoader : MonoBehaviour
     //prefab for the lesson button
     public GameObject lessonButton;
     //whether the menu is the instructor menu or the student menu
+    public GameObject testButton;
     public bool instructor;
-
+    private GameObject lesson1;
+    public int enabledLesson = 1;
+    private bool deb;
+    public bool activateEmurator;
+    private int currentLesson;
     private void OnEnable()
     {
         //destroy any buttons already loaded
@@ -27,8 +32,11 @@ public class LessonLoader : MonoBehaviour
             GameObject lesson = LessonManager.Instance.transform.GetChild(i).gameObject;
 
             //if the lesson is enabled or in instructor menu
-            if(lesson.GetComponent<Lesson>().lessonEnabled || instructor)
+            if(instructor)
             {
+                lesson.GetComponent<Lesson>().lessonEnabled = true;
+                deb = lesson.GetComponent<Lesson>().lessonEnabled;
+                Debug.Log(deb);
                 //create new button
                 GameObject newButton = Instantiate(lessonButton, content.transform);
 
@@ -52,5 +60,83 @@ public class LessonLoader : MonoBehaviour
             }
 
         }
+
+        lesson1 = LessonManager.Instance.transform.GetChild(0).gameObject;
+        if (!instructor)
+        {
+            currentLesson = 1;
+            for (var i = 0; i < LessonManager.Instance.transform.childCount; i++)
+            {
+                GameObject lesson = LessonManager.Instance.transform.GetChild(i).gameObject;
+                lesson.GetComponent<Lesson>().lessonEnabled = false;
+            }
+            lesson1.GetComponent<Lesson>().lessonEnabled = true;
+            //create new button
+            GameObject newButton = Instantiate(lessonButton, content.transform);
+            
+            //set the correct progress icon
+            newButton.transform.Find(lesson1.GetComponent<Lesson>().lessonProgress).gameObject.SetActive(true);
+
+            //fade the button if it is not available for the student
+            if (!lesson1.GetComponent<Lesson>().lessonEnabled)
+            {
+                newButton.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
+            }
+
+            //set the text on the button to match the lesson
+            newButton.transform.Find("Text").GetComponent<Text>().text = lesson1.name;
+
+            //assign the lesson to the button
+            newButton.GetComponent<LessonButton>().lesson = lesson1;
+
+            //assign this lesson loader to the button
+            newButton.GetComponent<LessonButton>().lessonLoader = this;
+
+            //GameObject newButton2 = Instantiate(testButton, content.transform);
+            //newButton2.GetComponent<TestButton>().lesson = lesson1;
+
+            //newButton2.GetComponent<TestButton>().lessonLoader = this;
+
+            StartCoroutine(UpdateLesson());
+        }
+    }
+
+    private IEnumerator UpdateLesson()
+    {
+        while (activateEmurator && currentLesson < enabledLesson)
+        {
+            Debug.Log("creating a lesson");
+            //if(lesson1.GetComponent<Lesson>().lessonProgress == "Done")
+            //{
+            currentLesson++;
+            GameObject lesson = LessonManager.Instance.transform.GetChild(currentLesson-1).gameObject;
+
+                lesson.GetComponent<Lesson>().lessonEnabled = true;
+                //create new button
+                GameObject newButton = Instantiate(lessonButton, content.transform);
+
+                //set the correct progress icon
+                newButton.transform.Find(lesson.GetComponent<Lesson>().lessonProgress).gameObject.SetActive(true);
+
+                //fade the button if it is not available for the student
+                if (!lesson.GetComponent<Lesson>().lessonEnabled)
+                {
+                    newButton.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
+                }
+
+                //set the text on the button to match the lesson
+                newButton.transform.Find("Text").GetComponent<Text>().text = lesson.name;
+
+                //assign the lesson to the button
+                newButton.GetComponent<LessonButton>().lesson = lesson;
+
+                //assign this lesson loader to the button
+                newButton.GetComponent<LessonButton>().lessonLoader = this;
+            
+            Debug.Log(currentLesson +" : " +enabledLesson);
+            //}
+            yield return null;
+        }
+
     }
 }

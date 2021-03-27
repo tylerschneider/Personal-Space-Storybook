@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 public class Lesson : MonoBehaviour
 {
-    public bool lessonEnabled = true;
+    public bool lessonEnabled;
     public string lessonProgress = "None";
     public TextAsset lessonText;
     public AudioClip[] clips;
@@ -30,6 +30,7 @@ public class Lesson : MonoBehaviour
         isPlaying = false;
         elapsedTime = 0f;
         Attempt = 0;
+        lessonEnabled = false;
     }
 
     public void BeginTimer()

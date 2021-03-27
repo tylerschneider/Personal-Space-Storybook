@@ -6405,7 +6405,10 @@ MonoBehaviour:
   content: {fileID: 119621460}
   lessonButton: {fileID: 1499751837523048207, guid: dc7fbc4a13272af46866d7daf63b52c5,
     type: 3}
+  testButton: {fileID: 0}
   instructor: 1
+  enabledLesson: 0
+  activateEmurator: 0
 --- !u!1 &891388843
 GameObject:
   m_ObjectHideFlags: 0
@@ -11328,7 +11331,11 @@ MonoBehaviour:
   content: {fileID: 119790883}
   lessonButton: {fileID: 1499751837523048207, guid: dc7fbc4a13272af46866d7daf63b52c5,
     type: 3}
+  testButton: {fileID: 7711135624292996522, guid: 7fc4d2c367760e34ebd5c446f985ba17,
+    type: 3}
   instructor: 0
+  enabledLesson: 0
+  activateEmurator: 0
 --- !u!1 &1569284596
 GameObject:
   m_ObjectHideFlags: 0

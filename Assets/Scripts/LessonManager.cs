@@ -51,15 +51,18 @@ public class LessonManager : MonoBehaviour
 
     public void BeginTimer()
     {
-        selectedLesson.BeginTimer();
+        if (selectedLesson != null)
+            selectedLesson.BeginTimer();
     }
     public void EndTimer()
     {
-        selectedLesson.StopTimer();
+        if (selectedLesson != null)
+            selectedLesson.StopTimer();
     }
     public void ResetTimer()
     {
-        selectedLesson.ResetTimer();
+        if (selectedLesson != null)
+            selectedLesson.ResetTimer();
     }
     public void AttemptsIncrease()
     {
@@ -71,9 +74,13 @@ public class LessonManager : MonoBehaviour
     //!! for debug !!
     public void CreateRandomLesson()
     {
-        Debug.Log(selectedLesson.timeString() + " created");
-        CreateLessonHistory(selectedLesson.lessonName, selectedLesson.Attempt, selectedLesson.timeString());
-        counter++;
+        if(selectedLesson != null)
+        {
+            CreateLessonHistory(selectedLesson.lessonName, selectedLesson.Attempt, selectedLesson.timeString());
+            counter++;
+
+        }
+        
     }
 
     public void CreateLessonHistory(string lesson, int attempts, string time)
