@@ -15,8 +15,9 @@ public class LessonLoader : MonoBehaviour
     private GameObject lesson1;
     public int enabledLesson = 1;
     private bool deb;
-    public bool activateEmurator;
-    private int currentLesson;
+
+    private int currentLesson = 1;
+    //private int currentLessonIndex = 0; 
     private void OnEnable()
     {
         //destroy any buttons already loaded
@@ -65,6 +66,7 @@ public class LessonLoader : MonoBehaviour
         if (!instructor)
         {
             currentLesson = 1;
+            enabledLesson = 1;
             for (var i = 0; i < LessonManager.Instance.transform.childCount; i++)
             {
                 GameObject lesson = LessonManager.Instance.transform.GetChild(i).gameObject;
@@ -97,13 +99,13 @@ public class LessonLoader : MonoBehaviour
 
             //newButton2.GetComponent<TestButton>().lessonLoader = this;
 
-            StartCoroutine(UpdateLesson());
+            
         }
     }
 
     private IEnumerator UpdateLesson()
     {
-        while (activateEmurator && currentLesson < enabledLesson)
+        while (currentLesson < enabledLesson)
         {
             Debug.Log("creating a lesson");
             //if(lesson1.GetComponent<Lesson>().lessonProgress == "Done")
@@ -137,6 +139,35 @@ public class LessonLoader : MonoBehaviour
             //}
             yield return null;
         }
+        if (currentLesson > enabledLesson)
+        {
+            Destroy(content.transform.GetChild(currentLesson-1).gameObject);
+            currentLesson--;
+        }
 
     }
+
+    private IEnumerator UpdateLessonProgress()
+    {
+
+
+                //get the lesson gameobject
+                GameObject lesson = LessonManager.Instance.transform.GetChild(currentLesson-1).gameObject;
+                if(lesson.GetComponent<Lesson>().complete == true)
+                {
+                    enabledLesson++;
+                    Debug.Log(enabledLesson);
+                }
+
+                yield return null;
+
+
+    }
+
+    private void Update()
+    {
+        StartCoroutine(UpdateLesson());
+        StartCoroutine(UpdateLessonProgress());
+    }
+
 }

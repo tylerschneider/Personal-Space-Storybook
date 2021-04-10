@@ -7,6 +7,7 @@ public class Lesson : MonoBehaviour
 {
     public bool lessonEnabled;
     public string lessonProgress = "None";
+    public bool complete;
     public TextAsset lessonText;
     public AudioClip[] clips;
     public DistanceManager.Classification answer = DistanceManager.Classification.None;
