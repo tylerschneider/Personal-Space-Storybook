@@ -228,7 +228,7 @@ public class ScenePlacer : MonoBehaviour
             state = PlacerState.Done;
 
             LessonManager.Instance.transform.Find(lesson.lessonName).GetComponent<Lesson>().lessonProgress = "Pass";
-            LessonManager.Instance.CreateLessonHistory(lesson.lessonName, score);
+            LessonManager.Instance.CreateLessonHistory(lesson.lessonName, score,"00:00");
         }
         else
         {

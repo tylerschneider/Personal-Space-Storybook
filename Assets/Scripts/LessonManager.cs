@@ -13,13 +13,15 @@ public class LessonManager : MonoBehaviour
     int counter = 0;
 
     public Lesson selectedLesson;
-
+    public Timer timer;
+    private int lessonAttempts;
     void Start()
     {
         if (!Instance)
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
+            timer = Timer.instance;
         }
         else
         {
@@ -39,16 +41,49 @@ public class LessonManager : MonoBehaviour
         }
     }
 
+    public void SelectedIndex(int index)
+    {
+        selectedLesson = this.gameObject.transform.GetChild(index - 1).GetComponent<Lesson>();
+        Debug.Log("selected " + selectedLesson.name);
+    }
+
+
+
+    public void BeginTimer()
+    {
+        if (selectedLesson != null)
+            selectedLesson.BeginTimer();
+    }
+    public void EndTimer()
+    {
+        if (selectedLesson != null)
+            selectedLesson.StopTimer();
+    }
+    public void ResetTimer()
+    {
+        if (selectedLesson != null)
+            selectedLesson.ResetTimer();
+    }
+    public void AttemptsIncrease()
+    {
+        selectedLesson.Attempt++;
+        Debug.Log("selected " + selectedLesson.name);
+        Debug.Log(selectedLesson.Attempt);
+    }
+
     //!! for debug !!
     public void CreateRandomLesson()
     {
-        int num1 = Random.Range(0, 10);
-        int num2 = Random.Range(0, 100);
-        CreateLessonHistory("Lesson " + counter, num2);
-        counter++;
+        if(selectedLesson != null)
+        {
+            CreateLessonHistory(selectedLesson.lessonName, selectedLesson.Attempt, selectedLesson.timeString());
+            counter++;
+
+        }
+        
     }
 
-    public void CreateLessonHistory(string lesson, int score)
+    public void CreateLessonHistory(string lesson, int attempts, string time)
     {
         //create a new guid for the file name
         System.Guid guid = System.Guid.NewGuid();
@@ -57,7 +92,8 @@ public class LessonManager : MonoBehaviour
 
         data.date = System.DateTime.Now;
         data.lesson = lesson;
-        data.score = score;
+        data.attempts = attempts;
+        data.time = time;
         data.note = "";
         data.guid = guid;
 
