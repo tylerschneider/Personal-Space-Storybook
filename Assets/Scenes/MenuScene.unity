@@ -4843,7 +4843,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1703863537}
         m_TargetAssemblyTypeName: LessonManager, Assembly-CSharp
-        m_MethodName: ResetTimer
+        m_MethodName: EndTimer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6884,7 +6884,10 @@ MonoBehaviour:
   content: {fileID: 119621460}
   lessonButton: {fileID: 1499751837523048207, guid: dc7fbc4a13272af46866d7daf63b52c5,
     type: 3}
+  testButton: {fileID: 0}
   instructor: 1
+  enabledLesson: 0
+  activateEmurator: 0
 --- !u!1 &891388843
 GameObject:
   m_ObjectHideFlags: 0
@@ -12229,7 +12232,11 @@ MonoBehaviour:
   content: {fileID: 119790883}
   lessonButton: {fileID: 1499751837523048207, guid: dc7fbc4a13272af46866d7daf63b52c5,
     type: 3}
+  testButton: {fileID: 7711135624292996522, guid: 7fc4d2c367760e34ebd5c446f985ba17,
+    type: 3}
   instructor: 0
+  enabledLesson: 0
+  activateEmurator: 0
 --- !u!1 &1569284596
 GameObject:
   m_ObjectHideFlags: 0
@@ -12485,6 +12492,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1703863537}
         m_TargetAssemblyTypeName: LessonManager, Assembly-CSharp
         m_MethodName: CreateRandomLesson
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1703863537}
+        m_TargetAssemblyTypeName: LessonManager, Assembly-CSharp
+        m_MethodName: ResetTimer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16425,6 +16444,8 @@ MonoBehaviour:
   placedObject: {fileID: 2647216631244201492, guid: 6742cb7aeae1552478e9e848bd492332,
     type: 3}
   lessonName: Lesson 1
+  timePlayingStr: 
+  Attempt: 0
 --- !u!1 &5329972304522240972
 GameObject:
   m_ObjectHideFlags: 0
@@ -16464,6 +16485,8 @@ MonoBehaviour:
   placedObject: {fileID: 5349509109877635419, guid: 80cb5024c6347ba408ae1b3b8f061c6f,
     type: 3}
   lessonName: Lesson 3
+  timePlayingStr: 
+  Attempt: 0
 --- !u!4 &5329972304522240974
 Transform:
   m_ObjectHideFlags: 0
@@ -16517,6 +16540,8 @@ MonoBehaviour:
   placedObject: {fileID: 4104044463227926280, guid: 9286800481b477f4394587c3dd1c34d4,
     type: 3}
   lessonName: Lesson 2
+  timePlayingStr: 
+  Attempt: 0
 --- !u!1 &6716389693940150225
 GameObject:
   m_ObjectHideFlags: 0

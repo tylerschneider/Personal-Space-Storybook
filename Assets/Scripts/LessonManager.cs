@@ -41,37 +41,50 @@ public class LessonManager : MonoBehaviour
         }
     }
 
+    public void SelectedIndex(int index)
+    {
+        selectedLesson = this.gameObject.transform.GetChild(index - 1).GetComponent<Lesson>();
+        Debug.Log("selected " + selectedLesson.name);
+    }
+
+
+
     public void BeginTimer()
     {
-        timer.BeginTimer();
+        if (selectedLesson != null)
+            selectedLesson.BeginTimer();
     }
     public void EndTimer()
     {
-        timer.StopTimer();
+        if (selectedLesson != null)
+            selectedLesson.StopTimer();
     }
     public void ResetTimer()
     {
-        timer.ResetTimer();
+        if (selectedLesson != null)
+            selectedLesson.ResetTimer();
     }
     public void AttemptsIncrease()
     {
-        lessonAttempts++; 
+        selectedLesson.Attempt++;
+        Debug.Log("selected " + selectedLesson.name);
+        Debug.Log(selectedLesson.Attempt);
     }
-    public void ResetAttempts()
-    {
-        lessonAttempts = 0;
-    }
+
     //!! for debug !!
     public void CreateRandomLesson()
     {
+        if(selectedLesson != null)
+        {
+            CreateLessonHistory(selectedLesson.lessonName, selectedLesson.Attempt, selectedLesson.timeString());
+            counter++;
 
-        CreateLessonHistory("Lesson " + counter, lessonAttempts, timer.timePlayingStr);
-        counter++;
+        }
+        
     }
 
     public void CreateLessonHistory(string lesson, int attempts, string time)
     {
-        time = timer.timePlayingStr;
         //create a new guid for the file name
         System.Guid guid = System.Guid.NewGuid();
 
@@ -89,7 +102,6 @@ public class LessonManager : MonoBehaviour
         FileStream file = File.Create(Application.persistentDataPath + "/data/" + guid + ".save");
         bf.Serialize(file, data);
         file.Close();
-        ResetAttempts();
     }
 
     public void UpdateLessonNote(string note, System.Guid guid)
