@@ -17,37 +17,44 @@ public class HistoryLoader : MonoBehaviour
     public Sprite pencil;
     private void OnEnable()
     {
-        DirectoryInfo info = new DirectoryInfo(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/");
-
-        //load the files in the data folder and store them in the files array in order of creation time (newest first)
-        FileInfo[] files = info.GetFiles().OrderByDescending(p => p.CreationTime).ToArray();
-        foreach (FileInfo fileInfo in files)
+        if(StudentManager.Instance.selectedName != "")
         {
-            //open each file
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(fileInfo.FullName, FileMode.Open);
-            LessonData data = (LessonData)bf.Deserialize(file);
-            file.Close();
+            DirectoryInfo info = new DirectoryInfo(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/");
 
-            //create a new row in the table for each file
-            GameObject row = Instantiate(historyRow, content.transform);
-
-            //display the file's given date, lesson name, and score
-            row.transform.Find("Date").GetComponent<Text>().text = data.date.ToString("MM/dd/yy");
-            row.transform.Find("Lesson").GetComponent<Text>().text = data.lesson;
-            row.transform.Find("Score").GetComponent<Text>().text = data.score.ToString();
-
-            //display a pencil button if there is no note, or a speach bubble if there is a note
-            if (data.note == "")
+            //load the files in the data folder and store them in the files array in order of creation time (newest first)
+            FileInfo[] files = info.GetFiles().OrderByDescending(p => p.CreationTime).ToArray();
+            foreach (FileInfo fileInfo in files)
             {
-                row.transform.Find("Button").GetComponent<Image>().sprite = pencil;
+                if(fileInfo.Name != "lessonData.save")
+                {
+                    //open each file
+                    BinaryFormatter bf = new BinaryFormatter();
+                    FileStream file = File.Open(fileInfo.FullName, FileMode.Open);
+                    LessonData data = (LessonData)bf.Deserialize(file);
+                    file.Close();
+
+                    //create a new row in the table for each file
+                    GameObject row = Instantiate(historyRow, content.transform);
+
+                    //display the file's given date, lesson name, and score
+                    row.transform.Find("Date").GetComponent<Text>().text = data.date.ToString("MM/dd/yy");
+                    row.transform.Find("Lesson").GetComponent<Text>().text = data.lesson;
+                    row.transform.Find("Score").GetComponent<Text>().text = data.score.ToString();
+
+                    //display a pencil button if there is no note, or a speach bubble if there is a note
+                    if (data.note == "")
+                    {
+                        row.transform.Find("Button").GetComponent<Image>().sprite = pencil;
+                    }
+                    else
+                    {
+                        row.transform.Find("Button").GetComponent<Image>().sprite = bubble;
+                    }
+                    //pass the file's data to the button so that it can be used by the note menu
+                    row.transform.Find("Button").GetComponent<HistoryButton>().data = data;
+                }
+
             }
-            else
-            {
-                row.transform.Find("Button").GetComponent<Image>().sprite = bubble;
-            }
-            //pass the file's data to the button so that it can be used by the note menu
-            row.transform.Find("Button").GetComponent<HistoryButton>().data = data;
         }
     }
 

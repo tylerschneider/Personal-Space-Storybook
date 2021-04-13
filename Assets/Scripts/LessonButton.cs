@@ -16,21 +16,24 @@ public class LessonButton : MonoBehaviour
         //check if the button is in the instructor menu
         if (lessonLoader.instructor)
         {
-            //toggle the button
-            lesson.GetComponent<Lesson>().lessonEnabled = !lesson.GetComponent<Lesson>().lessonEnabled;
-
-            //change the button's color when enabled/disabled
-            if (lesson.GetComponent<Lesson>().lessonEnabled)
+            if(StudentManager.Instance.selectedName != "")
             {
-                GetComponent<Image>().color = Color.white;
-            }
-            else
-            {
-                GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
-            }
+                //toggle the button
+                lesson.GetComponent<Lesson>().lessonEnabled = !lesson.GetComponent<Lesson>().lessonEnabled;
 
-            //save whether the lesson has been enabled/disabled when it is toggled
-            LessonManager.Instance.SaveEnabledLessons();
+                //change the button's color when enabled/disabled
+                if (lesson.GetComponent<Lesson>().lessonEnabled)
+                {
+                    GetComponent<Image>().color = Color.white;
+                }
+                else
+                {
+                    GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
+                }
+
+                //save whether the lesson has been enabled/disabled when it is toggled
+                LessonManager.Instance.SaveEnabledLessons();
+            }
         }
         else
         {

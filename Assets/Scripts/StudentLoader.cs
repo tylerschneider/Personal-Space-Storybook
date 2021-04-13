@@ -11,6 +11,10 @@ public class StudentLoader : MonoBehaviour
     public GameObject content;
     //prefab for the student button
     public GameObject studentButton;
+    //prefab for the delete student button
+    public GameObject studentDeleteButton;
+
+    public bool deleter = false;
 
     private void OnEnable()
     {
@@ -22,7 +26,6 @@ public class StudentLoader : MonoBehaviour
 
         BinaryFormatter bf = new BinaryFormatter();
         string[] files = Directory.GetFiles(Application.persistentDataPath + "/", "*.data");
-        Debug.Log(files);
 
         //for each student
         foreach(string studentFile in files)
@@ -31,7 +34,17 @@ public class StudentLoader : MonoBehaviour
                 Student student = (Student)bf.Deserialize(file);
                 file.Close();
 
-                GameObject newButton = Instantiate(studentButton, content.transform);
+            GameObject newButton;
+
+            if (!deleter)
+            {
+                newButton = Instantiate(studentButton, content.transform);
+            }
+            else
+            {
+                newButton = Instantiate(studentDeleteButton, content.transform);
+            }
+                newButton.GetComponent<StudentButton>().studentName = student.name;
                 newButton.GetComponent<StudentButton>().guid = student.guid;
                 newButton.transform.Find("Text").GetComponent<Text>().text = student.name;
 

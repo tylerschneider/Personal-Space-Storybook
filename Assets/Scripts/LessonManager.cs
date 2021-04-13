@@ -31,12 +31,6 @@ public class LessonManager : MonoBehaviour
         {
             Directory.CreateDirectory(Application.persistentDataPath + "/data");
         }
-
-        //load which lessons are enabled if there is a save
-        if (File.Exists(Application.persistentDataPath + "/lessonData.save"))
-        {
-            LoadEnabledLessons();
-        }
     }
 
     //!! for debug !!
@@ -98,7 +92,7 @@ public class LessonManager : MonoBehaviour
 
         //save the file
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/lessonData.save");
+        FileStream file = File.Create(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/lessonData.save");
         bf.Serialize(file, data);
         file.Close();
     }
@@ -107,7 +101,7 @@ public class LessonManager : MonoBehaviour
     {
         //load the enabled lessons file
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + "/lessonData.save", FileMode.Open);
+        FileStream file = File.Open(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/lessonData.save", FileMode.Open);
         EnabledLessons data = (EnabledLessons)bf.Deserialize(file);
         file.Close();
 
@@ -119,6 +113,16 @@ public class LessonManager : MonoBehaviour
                 transform.GetChild(i).GetComponent<Lesson>().lessonEnabled = data.enabledLesson[i];
                 transform.GetChild(i).GetComponent<Lesson>().lessonProgress = data.progress[i];
             }
+        }
+    }
+
+    public void ClearEnabledLessons()
+    {
+        foreach (Transform child in transform)
+        {
+            child.GetComponent<Lesson>().lessonEnabled = false;
+            child.GetComponent<Lesson>().lessonProgress = "None";
+
         }
     }
 
@@ -139,8 +143,5 @@ public class LessonManager : MonoBehaviour
         {
             child.GetComponent<Lesson>().lessonProgress = "None";
         }
-
-        //save to make sure the change in lesson progress is recorded
-        SaveEnabledLessons();
     }
 }
