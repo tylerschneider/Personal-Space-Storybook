@@ -33,12 +33,6 @@ public class LessonManager : MonoBehaviour
         {
             Directory.CreateDirectory(Application.persistentDataPath + "/data");
         }
-
-        //load which lessons are enabled if there is a save
-        if (File.Exists(Application.persistentDataPath + "/lessonData.save"))
-        {
-            LoadEnabledLessons();
-        }
     }
 
     public void SelectedIndex(int index)
@@ -99,7 +93,7 @@ public class LessonManager : MonoBehaviour
 
         //save the lesson data file in the data folder
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/data/" + guid + ".save");
+        FileStream file = File.Create(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/" + guid + ".save");
         bf.Serialize(file, data);
         file.Close();
     }
@@ -108,7 +102,7 @@ public class LessonManager : MonoBehaviour
     {
         //read the lesson data file with the given guid
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + "/data/" + guid + ".save", FileMode.Open);
+        FileStream file = File.Open(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/" + guid + ".save", FileMode.Open);
         LessonData data = (LessonData)bf.Deserialize(file);
         file.Close();
 
@@ -116,7 +110,7 @@ public class LessonManager : MonoBehaviour
         data.note = note;
 
         //save over the existing data file with the updated one
-        file = File.Create(Application.persistentDataPath + "/data/" + guid + ".save");
+        file = File.Create(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/" + guid + ".save");
         bf.Serialize(file, data);
         file.Close();
     }
@@ -134,7 +128,7 @@ public class LessonManager : MonoBehaviour
 
         //save the file
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/lessonData.save");
+        FileStream file = File.Create(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/lessonData.save");
         bf.Serialize(file, data);
         file.Close();
     }
@@ -143,7 +137,7 @@ public class LessonManager : MonoBehaviour
     {
         //load the enabled lessons file
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + "/lessonData.save", FileMode.Open);
+        FileStream file = File.Open(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/lessonData.save", FileMode.Open);
         EnabledLessons data = (EnabledLessons)bf.Deserialize(file);
         file.Close();
 
@@ -158,10 +152,20 @@ public class LessonManager : MonoBehaviour
         }
     }
 
+    public void ClearEnabledLessons()
+    {
+        foreach (Transform child in transform)
+        {
+            child.GetComponent<Lesson>().lessonEnabled = false;
+            child.GetComponent<Lesson>().lessonProgress = "None";
+
+        }
+    }
+
     public void DeleteAllHistory()
     {
         //get all the files in the data folder
-        DirectoryInfo info = new DirectoryInfo(Application.persistentDataPath + "/data/");
+        DirectoryInfo info = new DirectoryInfo(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/");
         FileInfo[] files = info.GetFiles();
 
         //delete each file
@@ -175,8 +179,5 @@ public class LessonManager : MonoBehaviour
         {
             child.GetComponent<Lesson>().lessonProgress = "None";
         }
-
-        //save to make sure the change in lesson progress is recorded
-        SaveEnabledLessons();
     }
 }
