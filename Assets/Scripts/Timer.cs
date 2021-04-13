@@ -1,44 +1,34 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using System;
-public class Lesson : MonoBehaviour
+using UnityEngine.UI;
+
+public class Timer : MonoBehaviour
 {
-    public bool lessonEnabled;
-    public string lessonProgress = "None";
-    public bool complete;
-    public TextAsset lessonText;
-    public AudioClip[] clips;
-    public DistanceManager.Classification answer = DistanceManager.Classification.None;
-    public GameObject placedObject;
-    public string lessonName;
-    public string timePlayingStr;
+    public static Timer instance;
+
     private TimeSpan timePlaying;
     private bool isPlaying;
     private float elapsedTime;
-    public int Attempt;
 
-    public string Test()
-    {
-        return lessonName;
-    }
-
+    public string timePlayingStr;
     // Start is called before the first frame update
+    void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
         isPlaying = false;
-        elapsedTime = 0f;
-        Attempt = 0;
-        lessonEnabled = false;
     }
 
     public void BeginTimer()
     {
         isPlaying = true;
-        
-        Debug.Log(isPlaying);
+        elapsedTime = 0f;
+
         StartCoroutine(UpdateTimer());
     }
 
@@ -51,14 +41,7 @@ public class Lesson : MonoBehaviour
     {
         isPlaying = false;
         elapsedTime = 0f;
-        Attempt = 0;
     }
-
-    public string timeString()
-    {
-        return timePlayingStr;
-    }
-
 
     private IEnumerator UpdateTimer()
     {
@@ -70,6 +53,6 @@ public class Lesson : MonoBehaviour
             Debug.Log(timePlayingStr);
             yield return null;
         }
-
+        
     }
 }

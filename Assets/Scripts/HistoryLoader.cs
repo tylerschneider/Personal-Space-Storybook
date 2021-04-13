@@ -39,7 +39,8 @@ public class HistoryLoader : MonoBehaviour
                     //display the file's given date, lesson name, and score
                     row.transform.Find("Date").GetComponent<Text>().text = data.date.ToString("MM/dd/yy");
                     row.transform.Find("Lesson").GetComponent<Text>().text = data.lesson;
-                    row.transform.Find("Score").GetComponent<Text>().text = data.score.ToString();
+                    row.transform.Find("Attempts").GetComponent<Text>().text = data.attempts.ToString();
+                    row.transform.Find("Time").GetComponent<Text>().text = data.time;
 
                     //display a pencil button if there is no note, or a speach bubble if there is a note
                     if (data.note == "")
@@ -53,7 +54,6 @@ public class HistoryLoader : MonoBehaviour
                     //pass the file's data to the button so that it can be used by the note menu
                     row.transform.Find("Button").GetComponent<HistoryButton>().data = data;
                 }
-
             }
         }
     }
