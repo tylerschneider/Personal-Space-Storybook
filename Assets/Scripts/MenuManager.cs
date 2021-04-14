@@ -33,6 +33,15 @@ public class MenuManager : MonoBehaviour
     //the lesson menu for displaying its summary
     public GameObject lessonMenu;
 
+    //stops menu animation from playing multiple times.
+    public bool menuPlayed = false;
+    public GameObject menuVideo;
+    public GameObject menuStill;
+    public GameObject instStill;
+    public GameObject studStill;
+    public GameObject inst;
+    public GameObject stud;
+
     public NoteMenuManager noteMenuManager;
 
 
@@ -76,6 +85,19 @@ public class MenuManager : MonoBehaviour
         if (selectedMenu != null)
         {
             transform.Find("Background").gameObject.SetActive(true);
+        }
+
+        //Don't play menu animation if already played.
+        menuPlayed = true;
+
+        if (menuPlayed)
+        {
+            menuVideo.gameObject.SetActive(false);
+            menuStill.gameObject.SetActive(true);
+            stud.gameObject.SetActive(false);
+            studStill.gameObject.SetActive(true);
+            inst.gameObject.SetActive(false);
+            instStill.gameObject.SetActive(true);
         }
     }
 
