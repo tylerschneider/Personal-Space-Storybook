@@ -13,7 +13,7 @@ public class LessonLoader : MonoBehaviour
     public GameObject testButton;
     public bool instructor;
     private GameObject lesson1;
-    public int enabledLesson = 1;
+    private int enabledLesson = 1;
     private bool deb;
 
     private int currentLesson = 1;

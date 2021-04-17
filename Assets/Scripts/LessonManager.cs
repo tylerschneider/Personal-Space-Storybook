@@ -8,12 +8,10 @@ using UnityEngine.UI;
 public class LessonManager : MonoBehaviour
 {
     public static LessonManager Instance;
-
+    private bool historyCreated;
     //!! for debug !!
-    int counter = 0;
 
     public Lesson selectedLesson;
-    public Timer timer;
     private int lessonAttempts;
     void Start()
     {
@@ -21,7 +19,6 @@ public class LessonManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
-            timer = Timer.instance;
         }
         else
         {
@@ -35,14 +32,16 @@ public class LessonManager : MonoBehaviour
         }
     }
 
+    //Current index of the lesson in lesson manager
     public void SelectedIndex(int index)
     {
         selectedLesson = this.gameObject.transform.GetChild(index - 1).GetComponent<Lesson>();
+        historyCreated = false;
         Debug.Log("selected " + selectedLesson.name);
     }
 
 
-
+    //Timer functions associate with timer functions in lesson
     public void BeginTimer()
     {
         if (selectedLesson != null)
@@ -58,6 +57,8 @@ public class LessonManager : MonoBehaviour
         if (selectedLesson != null)
             selectedLesson.ResetTimer();
     }
+
+    //Increase attempts by 1
     public void AttemptsIncrease()
     {
         selectedLesson.Attempt++;
@@ -65,16 +66,19 @@ public class LessonManager : MonoBehaviour
         Debug.Log(selectedLesson.Attempt);
     }
 
-    //!! for debug !!
-    public void CreateRandomLesson()
+    //Trigger to create a new history
+    public void LessonHistoryTrigger()
     {
-        if(selectedLesson != null)
+        //prevent duplicate history created
+        if(historyCreated == false)
         {
-            CreateLessonHistory(selectedLesson.lessonName, selectedLesson.Attempt, selectedLesson.timeString());
-            counter++;
-
+            if (selectedLesson != null)
+            {
+                CreateLessonHistory(selectedLesson.lessonName, selectedLesson.Attempt, selectedLesson.timeString());
+            }
         }
-        
+        historyCreated = true;
+  
     }
 
     public void CreateLessonHistory(string lesson, int attempts, string time)
