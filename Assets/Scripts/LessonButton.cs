@@ -43,12 +43,15 @@ public class LessonButton : MonoBehaviour
             SceneManager.LoadScene("Main");
             MenuManager.Instance.ChangeMenu(null);
         }
+
+        //Identify the button been clicked
         LessonManager.Instance.SelectedIndex(GetIndexFromString(lesson.name)); 
     }
     public void OnHold()
     {
         //start holding
         pressed = true;
+        //Identify the button been clicked
         LessonManager.Instance.SelectedIndex(GetIndexFromString(lesson.name));
     }
     private int GetIndexFromString(string name)
@@ -71,6 +74,7 @@ public class LessonButton : MonoBehaviour
         {
             MenuManager.Instance.LessonMenu(lesson);
         }
+        //When menu change, timer start and number of attempts increase by one
         LessonManager.Instance.BeginTimer();
         LessonManager.Instance.AttemptsIncrease();
 
