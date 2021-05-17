@@ -53,6 +53,7 @@ public class ScenePlacer : MonoBehaviour
             Instance = this;
         }
 
+        //get the selected lesson data and start the lesson timer
         lesson = LessonManager.Instance.selectedLesson;
         LessonManager.Instance.ResetTimer();
         LessonManager.Instance.BeginTimer();
@@ -116,10 +117,6 @@ public class ScenePlacer : MonoBehaviour
                 previewObject.SetActive(true);
                 previewObject.transform.position = pose.position;
                 previewObject.transform.rotation = pose.rotation;
-                /*Vector3 rotation = previewObject.transform.rotation.eulerAngles;
-                rotation.y += 180;
-                previewObject.transform.Rotate(rotation);*/
-                //previewObject.transform.forward = -previewObject.transform.forward;
             }
             else
             {
@@ -134,6 +131,7 @@ public class ScenePlacer : MonoBehaviour
         {
             if(!GetComponent<AudioSource>().isPlaying)
             {
+                //enable the confirm placement button after playing first audio clips
                 EnableConfirmButton();
             }
         }
@@ -216,28 +214,47 @@ public class ScenePlacer : MonoBehaviour
 
     public void OnConfirmButton()
     {
-        //code for checking answer
         DistanceManager data = placedObject.GetComponentInChildren<DistanceManager>();
+        //check if answer is correct
         if (data.currentClassification == lesson.answer)
         {
+            //add to attempts
             score += 1;
 
             //remove all buttons
             confirmButton.SetActive(false);
             backButton.SetActive(false);
 
+            //play the second audio clip
             GetComponent<AudioSource>().clip = lesson.clips[1];
             GetComponent<AudioSource>().Play();
 
             state = PlacerState.Done;
 
+            //end the timer and submit the lesson history
             LessonManager.Instance.EndTimer();
             LessonManager.Instance.transform.Find(lesson.lessonName).GetComponent<Lesson>().lessonProgress = "Pass";
             LessonManager.Instance.CreateLessonHistory(lesson.lessonName, score, lesson.timeString());
+
+            //if the auto lesson setting is enabled, find the next lesson and enable it
+            if (SettingsManager.Instance.AutoLesson)
+            {
+                for (int i = 0; i < transform.childCount - 1; i++)
+                {
+                    if (LessonManager.Instance.transform.GetChild(i).GetComponent<Lesson>().name == lesson.name)
+                    {
+                        transform.GetChild(i + 1).GetComponent<Lesson>().lessonEnabled = true;
+                        LessonManager.Instance.SaveEnabledLessons();
+                    }
+                }
+            }
         }
         else
         {
+            //add to attempts
             score += 1;
+
+            //mark lesson progress as not correct
             LessonManager.Instance.transform.Find(lesson.lessonName).GetComponent<Lesson>().lessonProgress = "Fail";
 
             confirmButton.SetActive(false);
@@ -247,6 +264,7 @@ public class ScenePlacer : MonoBehaviour
 
     public void OnRemoveButton()
     {
+        //destroys the placed object and starts placing again
         if (state == PlacerState.Placed)
         {
             Destroy(placedObject);
@@ -263,6 +281,7 @@ public class ScenePlacer : MonoBehaviour
 
     public void BackButton()
     {
+        //if returning to the main menu, end timer and create lesson history
         LessonManager.Instance.EndTimer();
         LessonManager.Instance.CreateLessonHistory(lesson.lessonName, score, lesson.timeString());
         SceneManager.LoadScene("MenuScene");

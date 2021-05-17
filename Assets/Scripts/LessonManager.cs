@@ -35,34 +35,12 @@ public class LessonManager : MonoBehaviour
         }
     }
 
-    public void BeginTimer()
-    {
-        if (selectedLesson != null)
-            selectedLesson.BeginTimer();
-    }
-    public void EndTimer()
-    {
-        if (selectedLesson != null)
-            selectedLesson.StopTimer();
-    }
-    public void ResetTimer()
-    {
-        if (selectedLesson != null)
-            selectedLesson.ResetTimer();
-    }
-    public void AttemptsIncrease()
-    {
-        selectedLesson.Attempt++;
-        Debug.Log("selected " + selectedLesson.name);
-        Debug.Log(selectedLesson.Attempt);
-    }
-
     //!! for debug !!
     public void CreateRandomLesson()
     {
         if(selectedLesson != null)
         {
-            CreateLessonHistory(selectedLesson.lessonName, selectedLesson.Attempt, selectedLesson.timeString());
+            CreateLessonHistory(selectedLesson.lessonName, Random.Range(0, 20), selectedLesson.timeString());
             counter++;
         }
     }
@@ -86,18 +64,6 @@ public class LessonManager : MonoBehaviour
         FileStream file = File.Create(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/" + guid + ".save");
         bf.Serialize(file, data);
         file.Close();
-
-        if(SettingsManager.Instance.AutoLesson)
-        {
-            for(int i = 0; i < transform.childCount - 1; i++)
-            {
-                if(transform.GetChild(i).name == lesson)
-                {
-                    transform.GetChild(i + 1).GetComponent<Lesson>().lessonEnabled = true;
-                    SaveEnabledLessons();
-                }
-            }
-        }
     }
 
     public void UpdateLessonNote(string note, System.Guid guid)
@@ -187,5 +153,21 @@ public class LessonManager : MonoBehaviour
         {
             child.GetComponent<Lesson>().lessonProgress = "None";
         }
+    }
+
+    public void BeginTimer()
+    {
+        if (selectedLesson != null)
+            selectedLesson.BeginTimer();
+    }
+    public void EndTimer()
+    {
+        if (selectedLesson != null)
+            selectedLesson.StopTimer();
+    }
+    public void ResetTimer()
+    {
+        if (selectedLesson != null)
+            selectedLesson.ResetTimer();
     }
 }

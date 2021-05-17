@@ -27,6 +27,7 @@ public class SettingsManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        //if a settings file exists, load them. If not, create a file.
         if (File.Exists(Application.persistentDataPath + "/settings.save"))
         {
             LoadSettings();
@@ -79,6 +80,7 @@ public class SettingsManager : MonoBehaviour
 
     private void Update()
     {
+        //make sure the buttons are the correct color when the setting is on/off
         SetButtonColor(guidanceButton, GuidanceCircle);
         SetButtonColor(autoButton, AutoLesson);
     }

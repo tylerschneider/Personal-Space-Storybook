@@ -177,7 +177,7 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
-            //return 1000000000 if no pin (the user can only enter up to 5 numbers)
+            //return none if no pin
             Debug.Log("No PIN saved!");
 
             return "None";
@@ -186,6 +186,7 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
+        //when the intro video ends for the first time, enable the buttons and prevent it from playing again
         if((ulong)video.frame == video.frameCount - 20 && video.isPlaying)
         {
             video.transform.parent.Find("InstructorStill").gameObject.SetActive(true);

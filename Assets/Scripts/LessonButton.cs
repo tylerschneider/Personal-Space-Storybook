@@ -45,7 +45,7 @@ public class LessonButton : MonoBehaviour
             SceneManager.LoadScene("Main");
             MenuManager.Instance.ChangeMenu(null);
             LessonManager.Instance.BeginTimer();
-            LessonManager.Instance.AttemptsIncrease();
+            //LessonManager.Instance.AttemptsIncrease();
         }
     }
     public void OnHold()
