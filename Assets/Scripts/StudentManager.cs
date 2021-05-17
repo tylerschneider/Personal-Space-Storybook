@@ -49,6 +49,8 @@ public class StudentManager : MonoBehaviour
         file.Close();
 
         StudentManager.Instance.SaveLastStudent();
+
+        Debug.Log("Create student");
     }
 
     public void DeleteStudent(System.Guid guid)

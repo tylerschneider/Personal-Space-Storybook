@@ -31,7 +31,6 @@ public class Lesson : MonoBehaviour
         isPlaying = false;
         elapsedTime = 0f;
         Attempt = 0;
-        lessonEnabled = false;
     }
 
     public void BeginTimer()
