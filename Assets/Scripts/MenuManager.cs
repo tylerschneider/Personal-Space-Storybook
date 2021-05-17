@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class MenuManager : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class MenuManager : MonoBehaviour
     public GameObject lessonMenu;
 
     public NoteMenuManager noteMenuManager;
+
+    public VideoPlayer video; 
 
 
     private void Start()
@@ -178,6 +181,16 @@ public class MenuManager : MonoBehaviour
             Debug.Log("No PIN saved!");
 
             return "None";
+        }
+    }
+
+    private void Update()
+    {
+        if((ulong)video.frame == video.frameCount - 20 && video.isPlaying)
+        {
+            video.transform.parent.Find("InstructorStill").gameObject.SetActive(true);
+            video.transform.parent.Find("StudentStill").gameObject.SetActive(true);
+            video.playOnAwake = false;
         }
     }
 }
