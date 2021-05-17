@@ -12,10 +12,13 @@ namespace SocicalCircle
         private Color normal;
         public CharacterType type;
         public GameObject clones;
+        public Text notification;
+        private string lines;
         public void OnDrop(PointerEventData eventData)
         {
             Debug.Log("OnDrop");
             DragSystem pointer = eventData.pointerDrag.GetComponent<DragSystem>();
+
             if (eventData.pointerDrag != null)
             {
                 eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
@@ -29,12 +32,31 @@ namespace SocicalCircle
                     pointer.currentCharacter++;
                     Debug.Log(pointer.currentCharacter);
                     Debug.Log(pointer.maxRandomCharacter);
+                    switch (type)
+                    {
+                        case CharacterType.Family:
+                            StartCoroutine(sendNotify("this is your family member",3));
+                            notification.color = Color.green;
+                            break;
+                        case CharacterType.Friend:
+                            StartCoroutine(sendNotify("this is your friend", 3));
+                            notification.color = Color.black;
+                            break;
+                        case CharacterType.Stranger:
+                            StartCoroutine(sendNotify("this is a stranger", 3));
+                            notification.color = Color.red;
+                            break;
+                        default:
+                            break;
+                    }
+
                     if(pointer.currentCharacter < pointer.maxRandomCharacter)
                     {
                         pointer.presentCharacter.sprite = pointer.randomizeCharacters[pointer.currentCharacter].characterSprite;
                     }
                     else
                     {
+                        pointer.gameObject.SetActive(false);
                         pointer.presentCharacter.sprite = null;
                     }
                 }
@@ -51,6 +73,15 @@ namespace SocicalCircle
         public void OnPointerExit(PointerEventData eventData)
         {
             this.GetComponent<Image>().color = normal;
+        }
+
+        IEnumerator sendNotify(string text,int time)
+        {
+            notification.gameObject.SetActive(true);
+            notification.text = text;
+            yield return new WaitForSeconds(time);
+            notification.text = "";
+            notification.gameObject.SetActive(false);
         }
     }
 
