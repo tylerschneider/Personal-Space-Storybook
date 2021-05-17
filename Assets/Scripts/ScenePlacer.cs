@@ -27,7 +27,7 @@ public class ScenePlacer : MonoBehaviour
     public GameObject retryScreen;
     public GameObject backButton;
 
-    private int score = 100;
+    private int score = 0;
 
     private GameObject previewObject = null;
     public GameObject placedObject = null;
@@ -54,6 +54,8 @@ public class ScenePlacer : MonoBehaviour
         }
 
         lesson = LessonManager.Instance.selectedLesson;
+        LessonManager.Instance.ResetTimer();
+        LessonManager.Instance.BeginTimer();
     }
 
     void OnEnable()
@@ -218,6 +220,8 @@ public class ScenePlacer : MonoBehaviour
         DistanceManager data = placedObject.GetComponentInChildren<DistanceManager>();
         if (data.currentClassification == lesson.answer)
         {
+            score += 1;
+
             //remove all buttons
             confirmButton.SetActive(false);
             backButton.SetActive(false);
@@ -227,16 +231,13 @@ public class ScenePlacer : MonoBehaviour
 
             state = PlacerState.Done;
 
+            LessonManager.Instance.EndTimer();
             LessonManager.Instance.transform.Find(lesson.lessonName).GetComponent<Lesson>().lessonProgress = "Pass";
             LessonManager.Instance.CreateLessonHistory(lesson.lessonName, score, lesson.timeString());
         }
         else
         {
-            score -= 10;
-            if(score <= 0)
-            {
-                score = 0;
-            }
+            score += 1;
             LessonManager.Instance.transform.Find(lesson.lessonName).GetComponent<Lesson>().lessonProgress = "Fail";
 
             confirmButton.SetActive(false);
@@ -262,6 +263,8 @@ public class ScenePlacer : MonoBehaviour
 
     public void BackButton()
     {
+        LessonManager.Instance.EndTimer();
+        LessonManager.Instance.CreateLessonHistory(lesson.lessonName, score, lesson.timeString());
         SceneManager.LoadScene("MenuScene");
         MenuManager.Instance.ChangeMenu(MenuManager.Instance.transform.Find("StudentLessons").gameObject);
     }

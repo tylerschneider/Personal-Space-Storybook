@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Android;
 
 public class DistanceManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class DistanceManager : MonoBehaviour
         None, Stranger, Friend, Family
     }
     public Classification currentClassification = Classification.None;
+    public Classification lastClassification = Classification.None;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +51,12 @@ public class DistanceManager : MonoBehaviour
         // Calculate distance to player
         distanceToPlayer = Vector3.Distance(this.transform.position, player.transform.position);
         Debug.Log("Distance to player: " + distanceToPlayer);
+
+        if(lastClassification != currentClassification)
+        {
+            Handheld.Vibrate();
+            lastClassification = currentClassification;
+        }
 
         // Check distance against settings
         classifyDistance();
@@ -85,6 +93,7 @@ public class DistanceManager : MonoBehaviour
                 currentClassification = Classification.Family;
                 Debug.Log("In friend distance");
             }
+
         } else if (distanceToPlayer > strangerDistance) {
             //GetComponent<Renderer>().material = materials[3];
             guidanceCircleSprite.sprite = sprites[3];
