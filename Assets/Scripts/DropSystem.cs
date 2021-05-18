@@ -27,11 +27,10 @@ namespace SocicalCircle
                 if (pointer.currentCharacter < pointer.maxRandomCharacter && type == pointer.randomizeCharacters[pointer.currentCharacter].characterType)
                 {
                     clones.GetComponent<Image>().sprite = pointer.presentCharacter.sprite;
+                    //evenData.GetComponent<AudioSource().clip.PlayOneShot();
                     GameObject obj = Instantiate(clones, gameObject.transform);
                     obj.transform.parent = gameObject.transform;
                     pointer.currentCharacter++;
-                    Debug.Log(pointer.currentCharacter);
-                    Debug.Log(pointer.maxRandomCharacter);
                     switch (type)
                     {
                         case CharacterType.Family:
@@ -53,6 +52,7 @@ namespace SocicalCircle
                     if(pointer.currentCharacter < pointer.maxRandomCharacter)
                     {
                         pointer.presentCharacter.sprite = pointer.randomizeCharacters[pointer.currentCharacter].characterSprite;
+                        //pointer.GetComponet<AudioSource>().clip == pointer.randomizeCharacters[pointer.currentCharacter].voice;
                     }
                     else
                     {

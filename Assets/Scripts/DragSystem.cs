@@ -15,6 +15,7 @@ namespace SocicalCircle
         public List<ScriptableCharacters> characters;
         public List<ScriptableCharacters> randomizeCharacters;
         public Image presentCharacter;
+        //public AudioClip voice;
         public int currentCharacter;
         public int maxRandomCharacter;
         private int totalCharacter;
@@ -37,7 +38,7 @@ namespace SocicalCircle
                 Debug.Log(i);
             }
 
-
+            //this.getComponent<AudioSource>().clip = voice;
             this.GetComponent<Image>().sprite = randomizeCharacters[currentCharacter].characterSprite;
             startPosition = rectTransform.anchoredPosition;
         }
