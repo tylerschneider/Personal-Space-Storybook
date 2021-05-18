@@ -153,6 +153,8 @@ public class ScenePlacer : MonoBehaviour
         //hide start button and show place button
         startButton.SetActive(false);
         placeButton.SetActive(true);
+
+        debug.text = ARSession.state.ToString();
     }
 
     public void OnPlaceButton()
