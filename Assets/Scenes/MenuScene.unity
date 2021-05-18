@@ -11697,7 +11697,7 @@ MonoBehaviour:
   randomizeCharacters: []
   presentCharacter: {fileID: 0}
   currentCharacter: 0
-  maxRandomCharacter: 4
+  maxRandomCharacter: 6
   totalCharacter: 0
   startPosition: {x: 0, y: 0}
 --- !u!114 &1542641034
