@@ -29,7 +29,7 @@ namespace SocicalCircle
             HashSet<int> randomNumbers = new HashSet<int>();
             while (randomNumbers.Count < maxRandomCharacter)
             {
-                randomNumbers.Add(Random.Range(1, 5));
+                randomNumbers.Add(Random.Range(1, characters.Count));
             }
             foreach (int i in randomNumbers)
             {
