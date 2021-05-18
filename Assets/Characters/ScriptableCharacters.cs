@@ -9,6 +9,7 @@ namespace SocicalCircle
     {
         public Sprite characterSprite;
         public CharacterType characterType;
+        public AudioClip voice;
     }
 
 }

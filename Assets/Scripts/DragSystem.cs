@@ -17,7 +17,7 @@ namespace SocicalCircle
         public Image presentCharacter;
         public int currentCharacter;
         public int maxRandomCharacter;
-        public int totalCharacter;
+        private int totalCharacter;
         public Vector2 startPosition;
         private void Awake()
         {
@@ -29,7 +29,7 @@ namespace SocicalCircle
             HashSet<int> randomNumbers = new HashSet<int>();
             while (randomNumbers.Count < maxRandomCharacter)
             {
-                randomNumbers.Add(Random.Range(1, characters.Count));
+                randomNumbers.Add(Random.Range(1, totalCharacter));
             }
             foreach (int i in randomNumbers)
             {
