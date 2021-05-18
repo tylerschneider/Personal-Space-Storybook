@@ -23,9 +23,13 @@ public class ScenePlacer : MonoBehaviour
     public GameObject placeButton;
     public GameObject confirmButton;
     public GameObject removeButton;
+    public GameObject nextButton;
     public GameObject endScreen;
     public GameObject retryScreen;
     public GameObject backButton;
+    public Text debug;
+
+    //public bool conversationEnded = false;
 
     private int score = 0;
 
@@ -86,6 +90,7 @@ public class ScenePlacer : MonoBehaviour
         // Move the preview when in placing state
         if (state == PlacerState.Placing)
         {
+
             var previewHits = new List<ARRaycastHit>();
             raycastManager.Raycast(new Ray(Camera.main.transform.position, Camera.main.transform.forward), previewHits, TrackableType.Planes);
             //if raycast hit
@@ -127,25 +132,11 @@ public class ScenePlacer : MonoBehaviour
                 }
             }
         }
-        else if(state == PlacerState.Placed)
-        {
-            if(!GetComponent<AudioSource>().isPlaying)
-            {
-                //enable the confirm placement button after playing first audio clips
-                EnableConfirmButton();
-            }
-        }
-        else if (state == PlacerState.Done)
-        {
-            if (!GetComponent<AudioSource>().isPlaying)
-            {
-                EnableEndScreen();
-            }
-        }
     }
 
     public void OnStartButton()
     {
+        //start placing the scene
         state = PlacerState.Placing;
 
         planeManager.enabled = true;
@@ -159,13 +150,14 @@ public class ScenePlacer : MonoBehaviour
             cloud.gameObject.SetActive(true);
         }
 
+        //hide start button and show place button
         startButton.SetActive(false);
         placeButton.SetActive(true);
     }
 
     public void OnPlaceButton()
     {
-        //when the player presses to put down the preview
+        //when the player finishes placing
 
         var placeHits = new List<ARRaycastHit>();
         raycastManager.Raycast(new Ray(Camera.main.gameObject.transform.position, Camera.main.gameObject.transform.forward), placeHits, TrackableType.Planes);
@@ -191,25 +183,20 @@ public class ScenePlacer : MonoBehaviour
             }
             var anchorComponent = placedObject.AddComponent<ARAnchor>();
             anchorComponent = anchorManager.AddAnchor(pose);
-            //placedObject.transform.forward = -placedObject.transform.forward;
 
-            GetComponent<AudioSource>().clip = lesson.clips[0];
-            GetComponent<AudioSource>().Play();
+            //start dialogue and show next button
+            placedObject.transform.Find("Subtitles").GetChild(0).GetComponent<ConversationController>().conversation = lesson.conversation;
+            placedObject.transform.Find("Subtitles").gameObject.SetActive(true);
+            
+            if (!nextButton.activeSelf)
+            {
+                nextButton.SetActive(true);
+            }
 
             state = PlacerState.Placed;
 
             placeButton.SetActive(false);
         }
-    }
-
-    public void EnableConfirmButton()
-    {
-        confirmButton.SetActive(true);
-    }
-
-    public void EnableEndScreen()
-    {
-        endScreen.SetActive(true);
     }
 
     public void OnConfirmButton()
@@ -224,10 +211,12 @@ public class ScenePlacer : MonoBehaviour
             //remove all buttons
             confirmButton.SetActive(false);
             backButton.SetActive(false);
+            //show end screen
+            endScreen.SetActive(true);
 
             //play the second audio clip
-            GetComponent<AudioSource>().clip = lesson.clips[1];
-            GetComponent<AudioSource>().Play();
+            //GetComponent<AudioSource>().clip = lesson.clips[1];
+            //GetComponent<AudioSource>().Play();
 
             state = PlacerState.Done;
 
@@ -258,6 +247,7 @@ public class ScenePlacer : MonoBehaviour
             LessonManager.Instance.transform.Find(lesson.lessonName).GetComponent<Lesson>().lessonProgress = "Fail";
 
             confirmButton.SetActive(false);
+            //show retry screen
             retryScreen.SetActive(true);
         }
     }
@@ -286,5 +276,21 @@ public class ScenePlacer : MonoBehaviour
         LessonManager.Instance.CreateLessonHistory(lesson.lessonName, score, lesson.timeString());
         SceneManager.LoadScene("MenuScene");
         MenuManager.Instance.ChangeMenu(MenuManager.Instance.transform.Find("StudentLessons").gameObject);
+    }
+
+    public void OnNextButton()
+    {
+        ConversationController conversation = placedObject.transform.Find("Subtitles").GetChild(0).GetComponent<ConversationController>();
+        if (!conversation.conversationEnded)
+        {
+            conversation.AdvanceLine();
+        }
+        else
+        {
+            //conversationEnded = true;
+            nextButton.SetActive(false);
+            confirmButton.SetActive(true);
+        }
+        
     }
 }

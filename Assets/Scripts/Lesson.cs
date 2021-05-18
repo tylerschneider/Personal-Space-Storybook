@@ -9,7 +9,7 @@ public class Lesson : MonoBehaviour
     public string lessonProgress = "None";
     public bool complete;
     public TextAsset lessonText;
-    public AudioClip[] clips;
+    public Conversation conversation;
     public DistanceManager.Classification answer = DistanceManager.Classification.None;
     public GameObject placedObject;
     public string lessonName;
@@ -57,7 +57,6 @@ public class Lesson : MonoBehaviour
             elapsedTime += Time.deltaTime;
             timePlaying = TimeSpan.FromSeconds(elapsedTime);
             timePlayingStr = timePlaying.ToString("mm':'ss");
-            Debug.Log(timePlayingStr);
             yield return null;
         }
 
