@@ -1,0 +1,15 @@
+Dad: Good morning. It's time for your doctor's appointment. Come here so we can get going. 
+
+[Enter the FAMILY circle to continue] 
+
+Doctor: Hi there. Today we'll be doing a standard checkup on your health. Come here and we can get started.
+
+[Enter the FRIEND circle to continue]
+
+Dad: Great job listening to the doctor. Come over here and let's go home.
+
+[Enter the FAMILY circle to continnue] 
+
+[On the way out, you see a stranger walking a dog. You do not know this person. They have no visible name.] 
+
+[Enter the STRANGER circle to continue] 

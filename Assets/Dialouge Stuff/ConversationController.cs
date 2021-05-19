@@ -17,7 +17,7 @@ public class ConversationController : MonoBehaviour
     private SpeakerUI speakerUi; 
     private SpeakerUI playerUi;
 
-    private int activeLineIndex;
+    public int activeLineIndex;
     public bool conversationStarted = false;
     public bool conversationEnded = false;
 
@@ -72,11 +72,11 @@ public class ConversationController : MonoBehaviour
             activeLineIndex += 1;
             PlayClip();
             activeClipIndex += 1;
-        }
 
-        else
-        {
-            AdvanceConversation();
+            if(activeLineIndex < conversation.lines.Length)
+            {
+                EndConversation();
+            }
         }
     }
 
@@ -103,7 +103,7 @@ public class ConversationController : MonoBehaviour
         audio.Play();
     }
 
-    private void AdvanceConversation() {
+    public void AdvanceConversation() {
       
         if (conversation.question != null)
             questionEvent.Invoke(conversation.question);

@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using UnityEngine.Android;
 
 public class MenuManager : MonoBehaviour
 {

@@ -9,8 +9,8 @@ public class Lesson : MonoBehaviour
     public string lessonProgress = "None";
     public bool complete;
     public TextAsset lessonText;
-    public Conversation conversation;
-    public DistanceManager.Classification answer = DistanceManager.Classification.None;
+    public Conversation[] conversations;
+    public DistanceManager.Classification[] answers;
     public GameObject placedObject;
     public string lessonName;
     public string timePlayingStr;

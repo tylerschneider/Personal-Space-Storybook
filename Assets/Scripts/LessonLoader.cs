@@ -43,7 +43,7 @@ public class LessonLoader : MonoBehaviour
                 }
 
                 //set the text on the button to match the lesson
-                newButton.transform.Find("Text").GetComponent<Text>().text = lesson.name;
+                newButton.transform.Find("Text").GetComponent<Text>().text = lesson.GetComponent<Lesson>().lessonName;
 
                 //assign the lesson to the button
                 newButton.GetComponent<LessonButton>().lesson = lesson;
@@ -61,7 +61,7 @@ public class LessonLoader : MonoBehaviour
                     GameObject newButton = Instantiate(lessonButton, content.transform);
 
                     //set the text on the button to match the lesson
-                    newButton.transform.Find("Text").GetComponent<Text>().text = lesson.GetComponent<Lesson>().name;
+                    newButton.transform.Find("Text").GetComponent<Text>().text = lesson.GetComponent<Lesson>().lessonName;
 
                     //set the correct progress icon
                     newButton.transform.Find(lesson.GetComponent<Lesson>().lessonProgress).gameObject.SetActive(true);

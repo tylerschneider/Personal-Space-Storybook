@@ -7,4 +7,5 @@ using UnityEngine;
 public class Character : ScriptableObject
 {
     public string fullName;
+    public Sprite sprite;
 }

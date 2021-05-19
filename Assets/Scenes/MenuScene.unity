@@ -23081,12 +23081,17 @@ MonoBehaviour:
   lessonEnabled: 1
   lessonProgress: None
   complete: 0
-  lessonText: {fileID: 4900000, guid: 10f918032ad7da9438cb17b9c2472d4f, type: 3}
-  conversation: {fileID: 11400000, guid: ede1a31db561260429d476d4959c8d43, type: 2}
-  answer: 3
+  lessonText: {fileID: 4900000, guid: 1d8b63e16ad4ec345a445b81bbcb04f4, type: 3}
+  conversations:
+  - {fileID: 11400000, guid: 972552eebdab97a4d9f05960a40daf28, type: 2}
+  - {fileID: 11400000, guid: 4a419ffe43067a04b9c91f7280c6e40e, type: 2}
+  - {fileID: 11400000, guid: af96b5d5402488c4e8170358917f577e, type: 2}
+  - {fileID: 11400000, guid: ee78bdebd83b7a14da075292c30558f5, type: 2}
+  - {fileID: 11400000, guid: e29e66be747624f43a7251f1f32e01bd, type: 2}
+  answers: 03000000030000000300000003000000
   placedObject: {fileID: 2647216631244201492, guid: 6742cb7aeae1552478e9e848bd492332,
     type: 3}
-  lessonName: Lesson 1
+  lessonName: Day 1
   timePlayingStr: 
 --- !u!1 &5329972304522240972
 GameObject:
@@ -23121,8 +23126,8 @@ MonoBehaviour:
   lessonProgress: None
   complete: 0
   lessonText: {fileID: 4900000, guid: 5937b449f51776f4d8d55c6b84c3a117, type: 3}
-  conversation: {fileID: 11400000, guid: 85e3eb6bedcee2144bf2aa6eed670c50, type: 2}
-  answer: 1
+  conversations: []
+  answers: 
   placedObject: {fileID: 5349509109877635419, guid: 80cb5024c6347ba408ae1b3b8f061c6f,
     type: 3}
   lessonName: Lesson 3
@@ -23193,8 +23198,8 @@ MonoBehaviour:
   lessonProgress: None
   complete: 0
   lessonText: {fileID: 4900000, guid: 00e25be79fe90d24d9643b3253beac78, type: 3}
-  conversation: {fileID: 11400000, guid: 629de5ea2ae942d488b353490c6d965e, type: 2}
-  answer: 2
+  conversations: []
+  answers: 
   placedObject: {fileID: 4104044463227926280, guid: 9286800481b477f4394587c3dd1c34d4,
     type: 3}
   lessonName: Lesson 2

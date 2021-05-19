@@ -5,6 +5,7 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Android;
 
 public class ScenePlacer : MonoBehaviour
 {
@@ -39,6 +40,9 @@ public class ScenePlacer : MonoBehaviour
     public static ScenePlacer Instance;
 
     public Lesson lesson;
+
+    public int conversationNum = 0;
+    public int answerNum = 0;
 
     private enum PlacerState
     {
@@ -107,7 +111,7 @@ public class ScenePlacer : MonoBehaviour
                         previewObject.GetComponentInChildren<DistanceManager>().guidanceCircleObject.GetComponent<SpriteRenderer>().enabled = false;
                     }
                     //set materials for the preview object to the preview material
-                    previewObject.GetComponent<Renderer>().material = previewMaterial;
+                    /*previewObject.GetComponent<Renderer>().material = previewMaterial;
                     foreach (var renderer in previewObject.GetComponentsInChildren<Renderer>())
                     {
                         var materials = new Material[renderer.materials.Length];
@@ -116,7 +120,7 @@ public class ScenePlacer : MonoBehaviour
                             materials[i] = previewMaterial;
                         }
                         renderer.materials = materials;
-                    }
+                    }*/
                 }
                 //show the preview object and place it at raycast hit
                 previewObject.SetActive(true);
@@ -136,6 +140,7 @@ public class ScenePlacer : MonoBehaviour
 
     public void OnStartButton()
     {
+
         //start placing the scene
         state = PlacerState.Placing;
 
@@ -154,6 +159,7 @@ public class ScenePlacer : MonoBehaviour
         startButton.SetActive(false);
         placeButton.SetActive(true);
 
+        //the game doesn't work without this?
         debug.text = ARSession.state.ToString();
     }
 
@@ -187,8 +193,8 @@ public class ScenePlacer : MonoBehaviour
             anchorComponent = anchorManager.AddAnchor(pose);
 
             //start dialogue and show next button
-            placedObject.transform.Find("Subtitles").GetChild(0).GetComponent<ConversationController>().conversation = lesson.conversation;
-            placedObject.transform.Find("Subtitles").gameObject.SetActive(true);
+            transform.parent.Find("Subtitles").GetChild(0).GetComponent<ConversationController>().conversation = lesson.conversations[0];
+            transform.parent.Find("Subtitles").gameObject.SetActive(true);
             
             if (!nextButton.activeSelf)
             {
@@ -201,31 +207,86 @@ public class ScenePlacer : MonoBehaviour
         }
     }
 
+    public void OnNextButton()
+    {
+        ConversationController conversation = placedObject.transform.Find("Subtitles").GetChild(0).GetComponent<ConversationController>();
+
+        //when next button is pressed, advance to the next line if the conversation has not ended
+        if (!conversation.conversationEnded)
+        {
+            conversation.AdvanceLine();
+            placedObject.transform.Find("Character").GetComponent<SpriteRenderer>().sprite = conversation.conversation.lines[conversation.activeLineIndex].character.sprite;
+        }
+        //if the conversation has ended, check if there is another answer
+        else
+        {
+            if(answerNum < lesson.answers.Length - 1)
+            {
+                nextButton.SetActive(false);
+                confirmButton.SetActive(true);
+            }
+            else
+            {
+                OnEndButton();
+            }
+
+        }
+    }
+
     public void OnConfirmButton()
     {
+        //when an answer is submitted
         DistanceManager data = placedObject.GetComponentInChildren<DistanceManager>();
-        //check if answer is correct
-        if (data.currentClassification == lesson.answer)
+        //if the submitted answer is correct
+        if (data.currentClassification == lesson.answers[answerNum])
         {
             //add to attempts
             score += 1;
 
-            //remove all buttons
+            //increase the answer number
+            answerNum++;
+
+            //remove confirm button
             confirmButton.SetActive(false);
             backButton.SetActive(false);
             //show end screen
             endScreen.SetActive(true);
+        }
+        else
+        {
+            //add to attempts
+            score += 1;
 
-            //play the second audio clip
-            //GetComponent<AudioSource>().clip = lesson.clips[1];
-            //GetComponent<AudioSource>().Play();
+            //mark lesson progress as not correct
+            LessonManager.Instance.transform.Find(lesson.lessonName).GetComponent<Lesson>().lessonProgress = "Fail";
 
-            state = PlacerState.Done;
+            confirmButton.SetActive(false);
+            //show retry screen
+            retryScreen.SetActive(true);
+        }
+    }
 
-            //end the timer and submit the lesson history
-            LessonManager.Instance.EndTimer();
+    public void OnEndButton()
+    {
+        //when pressing the end button when the end button is pressed or the final conversation ended
+        
+        ConversationController conversation = placedObject.transform.Find("Subtitles").GetChild(0).GetComponent<ConversationController>();
+        //if there is another conversation, continue to that conversation
+        if (conversationNum < lesson.conversations.Length - 1)
+        {
+            conversationNum++;
+            conversation.conversation = lesson.conversations[conversationNum];
+            conversation.conversationStarted = false;
+            conversation.conversationEnded = false;
+            conversation.activeLineIndex = 0;
+
+            conversation.AdvanceLine();
+            placedObject.transform.Find("Character").GetComponent<SpriteRenderer>().sprite = conversation.conversation.lines[conversation.activeLineIndex].character.sprite;
+        }
+        //if no more conversations
+        else
+        {
             LessonManager.Instance.transform.Find(lesson.lessonName).GetComponent<Lesson>().lessonProgress = "Pass";
-            LessonManager.Instance.CreateLessonHistory(lesson.lessonName, score, lesson.timeString());
 
             //if the auto lesson setting is enabled, find the next lesson and enable it
             if (SettingsManager.Instance.AutoLesson)
@@ -240,18 +301,10 @@ public class ScenePlacer : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            //add to attempts
-            score += 1;
 
-            //mark lesson progress as not correct
-            LessonManager.Instance.transform.Find(lesson.lessonName).GetComponent<Lesson>().lessonProgress = "Fail";
 
-            confirmButton.SetActive(false);
-            //show retry screen
-            retryScreen.SetActive(true);
-        }
+
+        BackButton();
     }
 
     public void OnRemoveButton()
@@ -278,21 +331,5 @@ public class ScenePlacer : MonoBehaviour
         LessonManager.Instance.CreateLessonHistory(lesson.lessonName, score, lesson.timeString());
         SceneManager.LoadScene("MenuScene");
         MenuManager.Instance.ChangeMenu(MenuManager.Instance.transform.Find("StudentLessons").gameObject);
-    }
-
-    public void OnNextButton()
-    {
-        ConversationController conversation = placedObject.transform.Find("Subtitles").GetChild(0).GetComponent<ConversationController>();
-        if (!conversation.conversationEnded)
-        {
-            conversation.AdvanceLine();
-        }
-        else
-        {
-            //conversationEnded = true;
-            nextButton.SetActive(false);
-            confirmButton.SetActive(true);
-        }
-        
     }
 }

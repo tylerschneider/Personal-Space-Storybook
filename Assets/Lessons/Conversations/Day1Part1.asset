@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 795d38ecdffec8e46aa7746e0ecb83be, type: 3}
+  m_Name: Day1Part1
+  m_EditorClassIdentifier: 
+  speaker: {fileID: 0}
+  player: {fileID: 0}
+  question: {fileID: 0}
+  nextConversation: {fileID: 0}
+  lines:
+  - character: {fileID: 11400000, guid: f3b42ed6b81cedd41a6ebc292bc46547, type: 2}
+    text: "Wake up sleepyhead. You\u2019ve got a big day ahead of you. It\u2019s
+      your birthday! Come over here and I\u2019ll tell you what we\u2019ll do today.\r"
+  voiceclips:
+  - {fileID: 8300000, guid: 13fbc745df1211c4ca460ec9c4d9f597, type: 3}
