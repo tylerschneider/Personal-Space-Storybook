@@ -40,8 +40,9 @@ public class DistanceManager : MonoBehaviour
     void Update()
     {
         // Calculate distance to player
-        distanceToPlayer = Vector3.Distance(this.transform.position, player.transform.position);
-        Debug.Log("Distance to player: " + distanceToPlayer);
+        Vector3 pos = new Vector3(transform.position.x, 0, transform.position.z);
+        Vector3 playerpos = new Vector3(player.transform.position.x, 0, player.transform.position.z);
+        distanceToPlayer = Vector3.Distance(pos, playerpos);
 
         //vibrate the phone when changing between circles
         if(lastClassification != currentClassification)
