@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55a2709d4d8e96347a868004c13f3f0f, type: 3}
-  m_Name: Character 2
+  m_Name: Character 16
   m_EditorClassIdentifier: 
-  characterSprite: {fileID: 21300000, guid: 47aeca65b665d984bbd21624f0df45a6, type: 3}
-  characterType: 0
+  characterSprite: {fileID: 21300000, guid: 6219fa549367f58479a22f6b9fdf3f71, type: 3}
+  characterType: 2
   voice: {fileID: 0}

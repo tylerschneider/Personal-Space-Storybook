@@ -11668,8 +11668,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -92.5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -0, y: -132.2}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1542641033
 MonoBehaviour:
@@ -11687,7 +11687,6 @@ MonoBehaviour:
   characters:
   - {fileID: 11400000, guid: eb14715d8a8502b4f9115f194e747fa2, type: 2}
   - {fileID: 11400000, guid: cb9fd74361b190c45ace9df751039af4, type: 2}
-  - {fileID: 11400000, guid: 60b7d64701a9d0647bb549db63c38026, type: 2}
   - {fileID: 11400000, guid: 3a816022f453cb44988c6558b1ebf539, type: 2}
   - {fileID: 11400000, guid: 4d0ac25eb75a9cf4a8469b2c431bfc0f, type: 2}
   - {fileID: 11400000, guid: 268a215d5be996d47a5f6b90f4f27a76, type: 2}
@@ -11698,6 +11697,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 19bcd907df5870c40bb181220d9af713, type: 2}
   - {fileID: 11400000, guid: ab335a4e02a4e5b4987e454cd18a9d27, type: 2}
   - {fileID: 11400000, guid: 2b8dbb6d0632916409caccffe23f81e4, type: 2}
+  - {fileID: 11400000, guid: 1105d05fb80a8b74980837641aa85f1a, type: 2}
+  - {fileID: 11400000, guid: a815f4f9b64c6d04bb32bb7c27a57d2f, type: 2}
+  - {fileID: 11400000, guid: 32196b7d4d2b4754da0fa3fcdc0df1bb, type: 2}
+  - {fileID: 11400000, guid: 465f26008d5e390488367c15ae8e0dd4, type: 2}
+  - {fileID: 11400000, guid: 0a6752c87a815db41a5048065ba23248, type: 2}
+  - {fileID: 11400000, guid: c58bdbfae7394f849a26b30c6faf7d77, type: 2}
+  - {fileID: 11400000, guid: ba169312a57e70146975064e83d709ae, type: 2}
+  - {fileID: 11400000, guid: b861198b6d122d64eae7f3f8a20551d0, type: 2}
   randomizeCharacters: []
   presentCharacter: {fileID: 0}
   currentCharacter: 0
@@ -11723,9 +11730,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c3aa32dd3851dd742974fcef3faa2b2c, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -14976,7 +14983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1971784386
 Transform:
   m_ObjectHideFlags: 0
@@ -15011,7 +15018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2003530447
 RectTransform:
   m_ObjectHideFlags: 0

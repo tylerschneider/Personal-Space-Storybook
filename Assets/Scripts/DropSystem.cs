@@ -27,6 +27,7 @@ namespace SocicalCircle
                 if (pointer.currentCharacter < pointer.maxRandomCharacter && type == pointer.randomizeCharacters[pointer.currentCharacter].characterType)
                 {
                     clones.GetComponent<Image>().sprite = pointer.presentCharacter.sprite;
+                    clones.GetComponent<Image>().preserveAspect = true;
                     //evenData.GetComponent<AudioSource().clip.PlayOneShot();
                     GameObject obj = Instantiate(clones, gameObject.transform);
                     obj.transform.parent = gameObject.transform;
