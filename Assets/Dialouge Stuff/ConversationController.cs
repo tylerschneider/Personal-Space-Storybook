@@ -18,11 +18,11 @@ public class ConversationController : MonoBehaviour
     private SpeakerUI playerUi;
 
     public int activeLineIndex;
+    public int activeClipIndex;
+
     public bool conversationStarted = false;
     public bool conversationEnded = false;
 
-
-    private int activeClipIndex;
 
     private void Start()
     {
@@ -48,11 +48,13 @@ public class ConversationController : MonoBehaviour
     private void EndConversation() {
         conversationStarted = false;
         conversationEnded = true;
+        activeClipIndex = 0;
+        activeLineIndex = 0;
         speakerUi.Hide();
         playerUi.Hide();
     }
 
-    private void Initialize()
+    public void Initialize()
     {
         conversationStarted = true;
         activeLineIndex = 0;
@@ -63,9 +65,6 @@ public class ConversationController : MonoBehaviour
     }
 
     public void AdvanceLine() {
-        if (conversation == null) return;
-        if (!conversationStarted) Initialize();
-
         if (activeLineIndex < conversation.lines.Length)
         {
             DisplayLine();
@@ -73,7 +72,7 @@ public class ConversationController : MonoBehaviour
             PlayClip();
             activeClipIndex += 1;
 
-            if(activeLineIndex < conversation.lines.Length)
+            if(activeLineIndex >= conversation.lines.Length)
             {
                 EndConversation();
             }

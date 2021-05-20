@@ -92,8 +92,6 @@ public class ScenePlacer : MonoBehaviour
 
     void Update()
     {
-        //the game doesn't work without this?
-        debug.text = state.ToString();
 
         // Move the preview when in placing state
         if (state == PlacerState.Placing)
@@ -193,17 +191,15 @@ public class ScenePlacer : MonoBehaviour
             var anchorComponent = placedObject.AddComponent<ARAnchor>();
             anchorComponent = anchorManager.AddAnchor(pose);
 
-            //start dialogue and show next button
-            subtitles.transform.GetChild(0).GetComponent<ConversationController>().conversation = lesson.conversations[0];
+            //start dialogue
+            ConversationController conversation = subtitles.transform.GetChild(0).GetComponent<ConversationController>();
+            conversation.conversation = lesson.conversations[0];
+            conversation.Initialize();
             subtitles.gameObject.SetActive(true);
-            
-            if (!nextButton.activeSelf)
-            {
-                nextButton.SetActive(true);
-            }
 
             state = PlacerState.Placed;
 
+            nextButton.SetActive(true);
             placeButton.SetActive(false);
         }
     }
@@ -270,19 +266,22 @@ public class ScenePlacer : MonoBehaviour
     public void OnEndButton()
     {
         //when pressing the end button when the end button is pressed or the final conversation ended
-        
-        ConversationController conversation = placedObject.transform.Find("Subtitles").GetChild(0).GetComponent<ConversationController>();
+        ConversationController conversation = subtitles.transform.GetChild(0).GetComponent<ConversationController>();
+
+        debug.text = conversationNum.ToString() + " " + (lesson.conversations.Length - 1).ToString();
         //if there is another conversation, continue to that conversation
         if (conversationNum < lesson.conversations.Length - 1)
         {
             conversationNum++;
             conversation.conversation = lesson.conversations[conversationNum];
-            conversation.conversationStarted = false;
-            conversation.conversationEnded = false;
-            conversation.activeLineIndex = 0;
+            conversation.Initialize();
 
             conversation.AdvanceLine();
             placedObject.transform.Find("Character").GetComponent<SpriteRenderer>().sprite = conversation.conversation.lines[conversation.activeLineIndex].character.sprite;
+
+            endScreen.SetActive(false);
+            nextButton.SetActive(true);
+            backButton.SetActive(true);
         }
         //if no more conversations
         else
@@ -301,11 +300,9 @@ public class ScenePlacer : MonoBehaviour
                     }
                 }
             }
+
+            BackButton();
         }
-
-
-
-        BackButton();
     }
 
     public void OnRemoveButton()
