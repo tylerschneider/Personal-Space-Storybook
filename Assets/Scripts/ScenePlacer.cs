@@ -28,6 +28,7 @@ public class ScenePlacer : MonoBehaviour
     public GameObject endScreen;
     public GameObject retryScreen;
     public GameObject backButton;
+    public GameObject subtitles;
     public Text debug;
 
     //public bool conversationEnded = false;
@@ -91,6 +92,9 @@ public class ScenePlacer : MonoBehaviour
 
     void Update()
     {
+        //the game doesn't work without this?
+        debug.text = state.ToString();
+
         // Move the preview when in placing state
         if (state == PlacerState.Placing)
         {
@@ -158,9 +162,6 @@ public class ScenePlacer : MonoBehaviour
         //hide start button and show place button
         startButton.SetActive(false);
         placeButton.SetActive(true);
-
-        //the game doesn't work without this?
-        debug.text = ARSession.state.ToString();
     }
 
     public void OnPlaceButton()
@@ -193,8 +194,8 @@ public class ScenePlacer : MonoBehaviour
             anchorComponent = anchorManager.AddAnchor(pose);
 
             //start dialogue and show next button
-            transform.parent.Find("Subtitles").GetChild(0).GetComponent<ConversationController>().conversation = lesson.conversations[0];
-            transform.parent.Find("Subtitles").gameObject.SetActive(true);
+            subtitles.transform.GetChild(0).GetComponent<ConversationController>().conversation = lesson.conversations[0];
+            subtitles.gameObject.SetActive(true);
             
             if (!nextButton.activeSelf)
             {
@@ -209,7 +210,7 @@ public class ScenePlacer : MonoBehaviour
 
     public void OnNextButton()
     {
-        ConversationController conversation = placedObject.transform.Find("Subtitles").GetChild(0).GetComponent<ConversationController>();
+        ConversationController conversation = subtitles.transform.GetChild(0).GetComponent<ConversationController>();
 
         //when next button is pressed, advance to the next line if the conversation has not ended
         if (!conversation.conversationEnded)

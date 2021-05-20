@@ -694,7 +694,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 48.19922}
+  m_AnchoredPosition: {x: 0, y: 48.25}
   m_SizeDelta: {x: 445, y: 102}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &613484173
@@ -3490,6 +3490,7 @@ MonoBehaviour:
   endScreen: {fileID: 51963456}
   retryScreen: {fileID: 1642429524}
   backButton: {fileID: 1920197322}
+  subtitles: {fileID: 488366074}
   debug: {fileID: 20183714}
   placedObject: {fileID: 0}
   lesson: {fileID: 0}
@@ -3720,7 +3721,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 1, y: 48.19922}
+  m_AnchoredPosition: {x: 1, y: 48.25}
   m_SizeDelta: {x: 333, y: 102}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2125017996
