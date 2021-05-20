@@ -8,7 +8,7 @@ Doctor: Hi there. Today we'll be doing a standard checkup on your health. Come h
 
 Dad: Great job listening to the doctor. Come over here and let's go home.
 
-[Enter the FAMILY circle to continnue] 
+[Enter the FAMILY circle to continue] 
 
 [On the way out, you see a stranger walking a dog. You do not know this person. They have no visible name.] 
 

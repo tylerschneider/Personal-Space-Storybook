@@ -6,7 +6,7 @@ Mother: We have to make a quick stop at the grocery store. Come here and let's g
 
 [Enter the STRANGER circle to continue.] 
 
-Police Officer: Are you okay? You look likke you lost your parents. Would you like some help finding them? Come over here and I'll help you find your parents.
+Police Officer: Are you okay? You look like you lost your parents. Would you like some help finding them? Come over here and I'll help you find your parents.
 
 [Enter the FRIEND circle to continue]
 
