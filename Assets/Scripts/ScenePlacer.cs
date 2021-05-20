@@ -261,6 +261,8 @@ public class ScenePlacer : MonoBehaviour
             confirmButton.SetActive(false);
             //show retry screen
             retryScreen.SetActive(true);
+            //hide speaker ui
+            subtitles.transform.GetChild(0).GetComponent<ConversationController>().speakerUi.Hide();
         }
     }
 
@@ -268,8 +270,6 @@ public class ScenePlacer : MonoBehaviour
     {
         //when pressing the end button when the end button is pressed or the final conversation ended
         ConversationController conversation = subtitles.transform.GetChild(0).GetComponent<ConversationController>();
-
-        debug.text = conversationNum + " " + (lesson.conversations.Length - 1);
 
         //if there is another conversation, continue to that conversation
         if (conversationNum < lesson.conversations.Length - 1)
@@ -286,8 +286,6 @@ public class ScenePlacer : MonoBehaviour
         //if no more conversations
         else
         {
-            debug.text = "Passed";
-
             LessonManager.Instance.transform.Find(lesson.lessonName).GetComponent<Lesson>().lessonProgress = "Pass";
 
             //if the auto lesson setting is enabled, find the next lesson and enable it

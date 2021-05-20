@@ -193,6 +193,7 @@ public class MenuManager : MonoBehaviour
             video.transform.parent.Find("InstructorStill").gameObject.SetActive(true);
             video.transform.parent.Find("StudentStill").gameObject.SetActive(true);
             video.playOnAwake = false;
+            transform.Find("MainMenu").Find("CreditsButton").gameObject.SetActive(true);
         }
     }
 }

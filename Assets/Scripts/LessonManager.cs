@@ -47,6 +47,8 @@ public class LessonManager : MonoBehaviour
 
     public void CreateLessonHistory(string lesson, int attempts, string time)
     {
+        Debug.Log("Creating History");
+
         //create a new guid for the file name
         System.Guid guid = System.Guid.NewGuid();
 
@@ -114,13 +116,9 @@ public class LessonManager : MonoBehaviour
         {
             if(transform.GetChild(i) != null)
             {
-                Debug.Log(transform.GetChild(i).GetComponent<Lesson>().lessonEnabled + " Before", transform.GetChild(i));
 
                 transform.GetChild(i).GetComponent<Lesson>().lessonEnabled = data.enabledLesson[i];
                 transform.GetChild(i).GetComponent<Lesson>().lessonProgress = data.progress[i];
-
-                Debug.Log(data.enabledLesson[i], transform.GetChild(i));
-                Debug.Log(transform.GetChild(i).GetComponent<Lesson>().lessonEnabled + " After", transform.GetChild(i));
             }
         }
     }
@@ -129,7 +127,10 @@ public class LessonManager : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            child.GetComponent<Lesson>().lessonEnabled = false;
+            if(child != transform.GetChild(0))
+            {
+                child.GetComponent<Lesson>().lessonEnabled = false;
+            }
             child.GetComponent<Lesson>().lessonProgress = "None";
         }
 
