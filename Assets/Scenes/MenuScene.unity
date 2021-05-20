@@ -18793,6 +18793,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690970312}
   m_CullTransparentMesh: 0
+--- !u!1 &1691337551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1691337552}
+  - component: {fileID: 1691337553}
+  m_Layer: 0
+  m_Name: Lesson 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1691337552
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691337551}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1703863538}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1691337553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691337551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85f32eaae0324469a77126b6c0ffda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lessonEnabled: 0
+  lessonProgress: None
+  complete: 0
+  lessonText: {fileID: 4900000, guid: e1e13a256a1b673489e6fcdd0feef9ca, type: 3}
+  conversations:
+  - {fileID: 11400000, guid: 3b041505537f0f748982ac16f79ca253, type: 2}
+  - {fileID: 11400000, guid: 9753988b5a4503c4984ace7859ac49cd, type: 2}
+  - {fileID: 11400000, guid: 489d1636e880f164db210cdc122af602, type: 2}
+  - {fileID: 11400000, guid: c8996778bfb86844ab0ffe170b690f74, type: 2}
+  answers: 03000000020000000300000001000000
+  placedObject: {fileID: 5349509109877635419, guid: 80cb5024c6347ba408ae1b3b8f061c6f,
+    type: 3}
+  lessonName: Day 4
+  timePlayingStr: 
 --- !u!1 &1701561167
 GameObject:
   m_ObjectHideFlags: 0
@@ -18971,6 +19028,7 @@ Transform:
   - {fileID: 7049438141501097313}
   - {fileID: 8128028785693755236}
   - {fileID: 5329972304522240974}
+  - {fileID: 1691337552}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23125,12 +23183,16 @@ MonoBehaviour:
   lessonEnabled: 0
   lessonProgress: None
   complete: 0
-  lessonText: {fileID: 4900000, guid: 5937b449f51776f4d8d55c6b84c3a117, type: 3}
-  conversations: []
-  answers: 
+  lessonText: {fileID: 4900000, guid: 9474add6e8c5b1944893bd599bd3ae92, type: 3}
+  conversations:
+  - {fileID: 11400000, guid: 76acfeabc4817004f84dba7b71aff943, type: 2}
+  - {fileID: 11400000, guid: c63e2b1352d8a9849a16eeb180585043, type: 2}
+  - {fileID: 11400000, guid: 6b6ba0f83b735bd47bc8082e3a3ebb2e, type: 2}
+  - {fileID: 11400000, guid: 3af5c2113f921044eb768689d47b8576, type: 2}
+  answers: 03000000010000000200000003000000
   placedObject: {fileID: 5349509109877635419, guid: 80cb5024c6347ba408ae1b3b8f061c6f,
     type: 3}
-  lessonName: Lesson 3
+  lessonName: Day 3
   timePlayingStr: 
 --- !u!4 &5329972304522240974
 Transform:
@@ -23197,12 +23259,18 @@ MonoBehaviour:
   lessonEnabled: 0
   lessonProgress: None
   complete: 0
-  lessonText: {fileID: 4900000, guid: 00e25be79fe90d24d9643b3253beac78, type: 3}
-  conversations: []
-  answers: 
+  lessonText: {fileID: 4900000, guid: abea1d054018ee949b977fec536a6af8, type: 3}
+  conversations:
+  - {fileID: 11400000, guid: f186263a3195c1447963a012892a021a, type: 2}
+  - {fileID: 11400000, guid: aee396b6051e16f47b2cceb24d09166b, type: 2}
+  - {fileID: 11400000, guid: cab4b07bd12f67d4fbc077b378ccfa25, type: 2}
+  - {fileID: 11400000, guid: 8232b3aada0829a4c960beb7e17d7516, type: 2}
+  - {fileID: 11400000, guid: 65ef4703af933724295691ec395a9b07, type: 2}
+  - {fileID: 11400000, guid: 4b848eec9af7e6f4f95d500ecb2fcb04, type: 2}
+  answers: 030000000200000002000000020000000100000003000000
   placedObject: {fileID: 4104044463227926280, guid: 9286800481b477f4394587c3dd1c34d4,
     type: 3}
-  lessonName: Lesson 2
+  lessonName: Day 2
   timePlayingStr: 
 --- !u!1 &6716389693940150225
 GameObject:

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd841a424449b564bb2c6258407184a2, type: 3}
-  m_Name: Mom
+  m_Name: Woman walking dog
   m_EditorClassIdentifier: 
-  fullName: Mom
-  sprite: {fileID: 21300000, guid: 93d968ece42d273429c2197619f04e8d, type: 3}
+  fullName: Woman Walking Dog
+  sprite: {fileID: 21300000, guid: 27e68d7621839d2448ef96332e77a38e, type: 3}

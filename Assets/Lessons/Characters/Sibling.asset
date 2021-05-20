@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Sibling
   m_EditorClassIdentifier: 
   fullName: Sibling
-  sprite: {fileID: 21300000, guid: eaf44666369cdb145a116bd6283ac7c4, type: 3}
+  sprite: {fileID: 21300000, guid: fc1046127517bb7449bc93aa1aeaa29a, type: 3}
