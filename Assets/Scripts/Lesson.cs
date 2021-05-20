@@ -9,56 +9,46 @@ public class Lesson : MonoBehaviour
     public string lessonProgress = "None";
     public bool complete;
     public TextAsset lessonText;
-    public AudioClip[] clips;
-    public DistanceManager.Classification answer = DistanceManager.Classification.None;
+    public Conversation[] conversations;
+    public DistanceManager.Classification[] answers;
     public GameObject placedObject;
     public string lessonName;
     public string timePlayingStr;
     private TimeSpan timePlaying;
     private bool isPlaying;
     private float elapsedTime;
-    public int Attempt;
-
-    public string Test()
-    {
-        return lessonName;
-    }
-
-    // Start is called before the first frame update
 
     private void Start()
     {
         isPlaying = false;
         elapsedTime = 0f;
-        Attempt = 0;
-        lessonEnabled = false;
     }
 
     public void BeginTimer()
     {
         isPlaying = true;
         
-        Debug.Log(isPlaying);
+        Debug.Log("Timer Started");
         StartCoroutine(UpdateTimer());
     }
 
     public void StopTimer()
     {
+        Debug.Log("Timer Stopped");
         isPlaying = false;
     }
 
     public void ResetTimer()
     {
+        Debug.Log("Timer Reset");
         isPlaying = false;
         elapsedTime = 0f;
-        Attempt = 0;
     }
 
     public string timeString()
     {
         return timePlayingStr;
     }
-
 
     private IEnumerator UpdateTimer()
     {
@@ -67,7 +57,6 @@ public class Lesson : MonoBehaviour
             elapsedTime += Time.deltaTime;
             timePlaying = TimeSpan.FromSeconds(elapsedTime);
             timePlayingStr = timePlaying.ToString("mm':'ss");
-            Debug.Log(timePlayingStr);
             yield return null;
         }
 

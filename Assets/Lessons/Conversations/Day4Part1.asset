@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 795d38ecdffec8e46aa7746e0ecb83be, type: 3}
+  m_Name: Day4Part1
+  m_EditorClassIdentifier: 
+  speaker: {fileID: 0}
+  player: {fileID: 0}
+  question: {fileID: 0}
+  nextConversation: {fileID: 0}
+  lines:
+  - character: {fileID: 11400000, guid: b421495563303a942b3ee28c3f83f89a, type: 2}
+    text: 'Good morning. It''s time for your doctor''s appointment. Come here so
+      we can get going. '
+  voiceclips:
+  - {fileID: 8300000, guid: 18931f449b64c514fb04d3746331f744, type: 3}

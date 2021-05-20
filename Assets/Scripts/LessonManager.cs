@@ -14,7 +14,7 @@ public class LessonManager : MonoBehaviour
 
     public Lesson selectedLesson;
     public Timer timer;
-    private int lessonAttempts;
+
     void Start()
     {
         if (!Instance)
@@ -35,46 +35,14 @@ public class LessonManager : MonoBehaviour
         }
     }
 
-    public void SelectedIndex(int index)
-    {
-        selectedLesson = this.gameObject.transform.GetChild(index - 1).GetComponent<Lesson>();
-        Debug.Log("selected " + selectedLesson.name);
-    }
-
-
-
-    public void BeginTimer()
-    {
-        if (selectedLesson != null)
-            selectedLesson.BeginTimer();
-    }
-    public void EndTimer()
-    {
-        if (selectedLesson != null)
-            selectedLesson.StopTimer();
-    }
-    public void ResetTimer()
-    {
-        if (selectedLesson != null)
-            selectedLesson.ResetTimer();
-    }
-    public void AttemptsIncrease()
-    {
-        selectedLesson.Attempt++;
-        Debug.Log("selected " + selectedLesson.name);
-        Debug.Log(selectedLesson.Attempt);
-    }
-
     //!! for debug !!
     public void CreateRandomLesson()
     {
         if(selectedLesson != null)
         {
-            CreateLessonHistory(selectedLesson.lessonName, selectedLesson.Attempt, selectedLesson.timeString());
+            CreateLessonHistory(selectedLesson.lessonName, Random.Range(0, 20), selectedLesson.timeString());
             counter++;
-
         }
-        
     }
 
     public void CreateLessonHistory(string lesson, int attempts, string time)
@@ -146,8 +114,13 @@ public class LessonManager : MonoBehaviour
         {
             if(transform.GetChild(i) != null)
             {
+                Debug.Log(transform.GetChild(i).GetComponent<Lesson>().lessonEnabled + " Before", transform.GetChild(i));
+
                 transform.GetChild(i).GetComponent<Lesson>().lessonEnabled = data.enabledLesson[i];
                 transform.GetChild(i).GetComponent<Lesson>().lessonProgress = data.progress[i];
+
+                Debug.Log(data.enabledLesson[i], transform.GetChild(i));
+                Debug.Log(transform.GetChild(i).GetComponent<Lesson>().lessonEnabled + " After", transform.GetChild(i));
             }
         }
     }
@@ -158,8 +131,9 @@ public class LessonManager : MonoBehaviour
         {
             child.GetComponent<Lesson>().lessonEnabled = false;
             child.GetComponent<Lesson>().lessonProgress = "None";
-
         }
+
+        Debug.Log("Clear Lesson Data");
     }
 
     public void DeleteAllHistory()
@@ -179,5 +153,21 @@ public class LessonManager : MonoBehaviour
         {
             child.GetComponent<Lesson>().lessonProgress = "None";
         }
+    }
+
+    public void BeginTimer()
+    {
+        if (selectedLesson != null)
+            selectedLesson.BeginTimer();
+    }
+    public void EndTimer()
+    {
+        if (selectedLesson != null)
+            selectedLesson.StopTimer();
+    }
+    public void ResetTimer()
+    {
+        if (selectedLesson != null)
+            selectedLesson.ResetTimer();
     }
 }

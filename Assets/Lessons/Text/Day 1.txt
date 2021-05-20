@@ -1,0 +1,23 @@
+Mother: Wake up sleepyhead. You’ve got a big day ahead of you. It’s your birthday! Come over here and I’ll tell you what we’ll do today.
+
+[Enter the FAMILY circle to continue]
+
+Mother: Your grandparents, aunt, and uncle will be coming over today to celebrate your birthday.
+
+Grandparents: Happy birthday deary! Come over here so we can give you a hug!
+
+[Enter the FAMILY circle to continue] 
+
+Aunt: Happy birthday!
+
+Uncle: We brought you a present.
+
+Aunt: Come here so we can give it to you.
+
+[Enter the FAMILY circle to continue]
+
+Brother/Sister: Ooh, come here and let me see what you got! 
+
+[Enter the FAMILY circle to continue]
+
+Brother/Sister: Cool!

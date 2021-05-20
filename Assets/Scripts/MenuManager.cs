@@ -4,6 +4,8 @@ using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.UI;
+using UnityEngine.Video;
+using UnityEngine.Android;
 
 public class MenuManager : MonoBehaviour
 {
@@ -34,6 +36,8 @@ public class MenuManager : MonoBehaviour
     public GameObject lessonMenu;
 
     public NoteMenuManager noteMenuManager;
+
+    public VideoPlayer video; 
 
 
     private void Start()
@@ -174,10 +178,21 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
-            //return 1000000000 if no pin (the user can only enter up to 5 numbers)
+            //return none if no pin
             Debug.Log("No PIN saved!");
 
             return "None";
+        }
+    }
+
+    private void Update()
+    {
+        //when the intro video ends for the first time, enable the buttons and prevent it from playing again
+        if((ulong)video.frame == video.frameCount - 20 && video.isPlaying)
+        {
+            video.transform.parent.Find("InstructorStill").gameObject.SetActive(true);
+            video.transform.parent.Find("StudentStill").gameObject.SetActive(true);
+            video.playOnAwake = false;
         }
     }
 }

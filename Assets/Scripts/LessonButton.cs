@@ -20,7 +20,7 @@ public class LessonButton : MonoBehaviour
         //check if the button is in the instructor menu
         if (lessonLoader.instructor)
         {
-            if(StudentManager.Instance.selectedName != "")
+            if(StudentManager.Instance.selectedStudent != Guid.Empty)
             {
                 //toggle the button
                 lesson.GetComponent<Lesson>().lessonEnabled = !lesson.GetComponent<Lesson>().lessonEnabled;
@@ -44,20 +44,16 @@ public class LessonButton : MonoBehaviour
             LessonManager.Instance.selectedLesson = lesson.GetComponent<Lesson>();
             SceneManager.LoadScene("Main");
             MenuManager.Instance.ChangeMenu(null);
+            LessonManager.Instance.BeginTimer();
+            //LessonManager.Instance.AttemptsIncrease();
         }
-        LessonManager.Instance.SelectedIndex(GetIndexFromString(lesson.name)); 
     }
     public void OnHold()
     {
         //start holding
         pressed = true;
-        LessonManager.Instance.SelectedIndex(GetIndexFromString(lesson.name));
     }
-    private int GetIndexFromString(string name)
-    {
-        int ret = int.Parse(name.Substring(7, 1));
-        return ret;
-    }
+
     public void OffHold()
     {
         //stop holding and reset the timer
@@ -73,9 +69,6 @@ public class LessonButton : MonoBehaviour
         {
             MenuManager.Instance.LessonMenu(lesson);
         }
-        LessonManager.Instance.BeginTimer();
-        LessonManager.Instance.AttemptsIncrease();
-
     }
 
     private void Update()
