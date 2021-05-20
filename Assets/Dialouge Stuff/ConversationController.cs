@@ -14,7 +14,7 @@ public class ConversationController : MonoBehaviour
     public GameObject speaker;
     public GameObject player;
 
-    private SpeakerUI speakerUi; 
+    public SpeakerUI speakerUi; 
     private SpeakerUI playerUi;
 
     public int activeLineIndex;
@@ -26,10 +26,10 @@ public class ConversationController : MonoBehaviour
 
     private void Start()
     {
-        speakerUi = speaker.GetComponent<SpeakerUI>(); //speakerUi.GetComponent<SpeakerUI>();
-        playerUi = player.GetComponent<SpeakerUI>(); //playerUi.GetComponent<SpeakerUI>();
+        speakerUi = speaker.GetComponent<SpeakerUI>();
+        playerUi = player.GetComponent<SpeakerUI>();
     }
-
+   
     public void ChangeConversation(Conversation nextConversation)
     {
         conversationStarted = false;
@@ -42,12 +42,12 @@ public class ConversationController : MonoBehaviour
         conversationEnded = true;
         activeClipIndex = 0;
         activeLineIndex = 0;
-        speakerUi.Hide();
+        //speakerUi.Hide();
     }
 
     public void Initialize()
     {
-        conversationStarted = true;
+        conversationEnded = false;
         activeLineIndex = 0;
         activeClipIndex = 0;
     }
@@ -56,11 +56,11 @@ public class ConversationController : MonoBehaviour
         if (activeLineIndex < conversation.lines.Length)
         {
             DisplayLine();
-            activeLineIndex += 1;
+            activeLineIndex++;
             PlayClip();
-            activeClipIndex += 1;
+            activeClipIndex++;
 
-            if(activeLineIndex >= conversation.lines.Length)
+            if(activeLineIndex == conversation.lines.Length)
             {
                 EndConversation();
             }

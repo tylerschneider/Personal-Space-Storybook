@@ -20,4 +20,4 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: 9d971ca692ac16145a44016b3a70ef02, type: 2}
     text: 'Ooh, come here and let me see what you got! '
   voiceclips:
-  - {fileID: 8300000, guid: bf85ebfb0317ba84f9a4cbeb7c377ec1, type: 3}
+  - {fileID: 8300000, guid: 2be038a6cdea4f64ab512b1db3f1e1d1, type: 3}

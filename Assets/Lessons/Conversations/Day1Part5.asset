@@ -20,4 +20,4 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: 9d971ca692ac16145a44016b3a70ef02, type: 2}
     text: Cool!
   voiceclips:
-  - {fileID: 8300000, guid: 32160bc2e8a14fc4faa40571f84913a6, type: 3}
+  - {fileID: 8300000, guid: ecfc3caa9bf4fbf47b306e2fe2c83cc4, type: 3}
