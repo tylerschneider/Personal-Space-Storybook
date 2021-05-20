@@ -211,13 +211,13 @@ public class ScenePlacer : MonoBehaviour
         //when next button is pressed, advance to the next line if the conversation has not ended
         if (!conversation.conversationEnded)
         {
-            conversation.AdvanceLine();
             placedObject.transform.Find("Character").GetComponent<SpriteRenderer>().sprite = conversation.conversation.lines[conversation.activeLineIndex].character.sprite;
+            conversation.AdvanceLine();
         }
         //if the conversation has ended, check if there is another answer
         else
         {
-            if(answerNum < lesson.answers.Length - 1)
+            if(answerNum < lesson.answers.Length)
             {
                 nextButton.SetActive(false);
                 confirmButton.SetActive(true);
@@ -226,7 +226,6 @@ public class ScenePlacer : MonoBehaviour
             {
                 OnEndButton();
             }
-
         }
     }
 
@@ -248,6 +247,8 @@ public class ScenePlacer : MonoBehaviour
             backButton.SetActive(false);
             //show end screen
             endScreen.SetActive(true);
+            //hide speaker ui
+            subtitles.transform.GetChild(0).GetComponent<ConversationController>().speakerUi.Hide();
         }
         else
         {
@@ -268,16 +269,15 @@ public class ScenePlacer : MonoBehaviour
         //when pressing the end button when the end button is pressed or the final conversation ended
         ConversationController conversation = subtitles.transform.GetChild(0).GetComponent<ConversationController>();
 
-        debug.text = conversationNum.ToString() + " " + (lesson.conversations.Length - 1).ToString();
+        debug.text = conversationNum + " " + (lesson.conversations.Length - 1);
+
         //if there is another conversation, continue to that conversation
         if (conversationNum < lesson.conversations.Length - 1)
         {
             conversationNum++;
             conversation.conversation = lesson.conversations[conversationNum];
             conversation.Initialize();
-
-            conversation.AdvanceLine();
-            placedObject.transform.Find("Character").GetComponent<SpriteRenderer>().sprite = conversation.conversation.lines[conversation.activeLineIndex].character.sprite;
+            //conversation.AdvanceLine();
 
             endScreen.SetActive(false);
             nextButton.SetActive(true);
@@ -286,6 +286,8 @@ public class ScenePlacer : MonoBehaviour
         //if no more conversations
         else
         {
+            debug.text = "Passed";
+
             LessonManager.Instance.transform.Find(lesson.lessonName).GetComponent<Lesson>().lessonProgress = "Pass";
 
             //if the auto lesson setting is enabled, find the next lesson and enable it

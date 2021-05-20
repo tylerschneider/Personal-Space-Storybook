@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Aunt
   m_EditorClassIdentifier: 
   fullName: Aunt
-  sprite: {fileID: 21300000, guid: 9709a2b8a3fa54f4d81fbf1d42073f3e, type: 3}
+  sprite: {fileID: 21300000, guid: cb8c55a989112fb44979745517d1a93d, type: 3}

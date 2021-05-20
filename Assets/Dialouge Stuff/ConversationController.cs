@@ -14,40 +14,31 @@ public class ConversationController : MonoBehaviour
     public GameObject speaker;
     public GameObject player;
 
-    private SpeakerUI speakerUi; 
+    public SpeakerUI speakerUi; 
     private SpeakerUI playerUi;
 
     public int activeLineIndex;
     public int activeClipIndex;
 
-    public bool conversationStarted = false;
     public bool conversationEnded = false;
 
 
     private void Start()
     {
-        speakerUi = speaker.GetComponent<SpeakerUI>(); //speakerUi.GetComponent<SpeakerUI>();
-        playerUi = player.GetComponent<SpeakerUI>(); //playerUi.GetComponent<SpeakerUI>();
-    }
-
-    public void ChangeConversation(Conversation nextConversation)
-    {
-        conversationStarted = false;
-        conversation = nextConversation;
-        AdvanceLine();
+        speakerUi = speaker.GetComponent<SpeakerUI>();
+        playerUi = player.GetComponent<SpeakerUI>();
     }
    
     private void EndConversation() {
-        conversationStarted = false;
         conversationEnded = true;
         activeClipIndex = 0;
         activeLineIndex = 0;
-        speakerUi.Hide();
+        //speakerUi.Hide();
     }
 
     public void Initialize()
     {
-        conversationStarted = true;
+        conversationEnded = false;
         activeLineIndex = 0;
         activeClipIndex = 0;
     }
@@ -56,11 +47,11 @@ public class ConversationController : MonoBehaviour
         if (activeLineIndex < conversation.lines.Length)
         {
             DisplayLine();
-            activeLineIndex += 1;
+            activeLineIndex++;
             PlayClip();
-            activeClipIndex += 1;
+            activeClipIndex++;
 
-            if(activeLineIndex >= conversation.lines.Length)
+            if(activeLineIndex == conversation.lines.Length)
             {
                 EndConversation();
             }
@@ -80,16 +71,6 @@ public class ConversationController : MonoBehaviour
 
         audio.clip = conversation.voiceclips[activeClipIndex];
         audio.Play();
-    }
-
-    public void AdvanceConversation() {
-      
-        if (conversation.question != null)
-            questionEvent.Invoke(conversation.question);
-        else if (conversation.nextConversation != null)
-            ChangeConversation(conversation.nextConversation);
-        else
-            EndConversation();
     }
 
     private void SetDialog(SpeakerUI activeSpeakerUI, SpeakerUI inactiveSpeakerUI, string text, Character character)

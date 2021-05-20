@@ -17,7 +17,7 @@ MonoBehaviour:
   question: {fileID: 0}
   nextConversation: {fileID: 0}
   lines:
-  - character: {fileID: 11400000, guid: f3b42ed6b81cedd41a6ebc292bc46547, type: 2}
+  - character: {fileID: 11400000, guid: 02cc4cae4ed69f641a047aa967f85e1a, type: 2}
     text: "Your grandparents, aunt, and uncle will be coming over today to celebrate
       your birthday.\r"
   - character: {fileID: 11400000, guid: eed2612e013e7ed4eb02706c70880ecf, type: 2}

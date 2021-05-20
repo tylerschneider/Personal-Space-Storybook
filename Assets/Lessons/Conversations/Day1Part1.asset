@@ -17,7 +17,7 @@ MonoBehaviour:
   question: {fileID: 0}
   nextConversation: {fileID: 0}
   lines:
-  - character: {fileID: 11400000, guid: f3b42ed6b81cedd41a6ebc292bc46547, type: 2}
+  - character: {fileID: 11400000, guid: 02cc4cae4ed69f641a047aa967f85e1a, type: 2}
     text: "Wake up sleepyhead. You\u2019ve got a big day ahead of you. It\u2019s
       your birthday! Come over here and I\u2019ll tell you what we\u2019ll do today.\r"
   voiceclips:

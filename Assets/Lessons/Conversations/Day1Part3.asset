@@ -22,7 +22,7 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: b2798d276ada61f42b1fd45062a24ac0, type: 2}
     text: We brought you a present.
   - character: {fileID: 11400000, guid: ac7eda70a101c6e40a06313db3e8cc5a, type: 2}
-    text: 'Aunt: Come here so we can give it to you.'
+    text: Come here so we can give it to you.
   voiceclips:
   - {fileID: 8300000, guid: 318aa5036b36a3c4486a814a91be8093, type: 3}
   - {fileID: 8300000, guid: 8960ffc345de5fd40a130f564b95b51a, type: 3}

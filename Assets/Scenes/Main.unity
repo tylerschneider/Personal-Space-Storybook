@@ -497,7 +497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &488366075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1632,7 +1632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
 --- !u!114 &1137560951
@@ -2464,8 +2464,9 @@ MonoBehaviour:
       m_Calls: []
   speaker: {fileID: 1394515616}
   player: {fileID: 292518868}
+  speakerUi: {fileID: 0}
   activeLineIndex: 0
-  conversationStarted: 0
+  activeClipIndex: 0
   conversationEnded: 0
 --- !u!1 &1442522938
 GameObject:
