@@ -36,14 +36,6 @@ public class ConversationController : MonoBehaviour
         conversation = nextConversation;
         AdvanceLine();
     }
-
-    /*private void Update()
-    {
-        if (Input.GetKeyDown("space"))
-            AdvanceLine();
-        else if (Input.GetKeyDown("x"))
-            EndConversation();
-    }*/
    
     private void EndConversation() {
         conversationStarted = false;
@@ -51,7 +43,6 @@ public class ConversationController : MonoBehaviour
         activeClipIndex = 0;
         activeLineIndex = 0;
         speakerUi.Hide();
-        playerUi.Hide();
     }
 
     public void Initialize()
@@ -59,9 +50,6 @@ public class ConversationController : MonoBehaviour
         conversationStarted = true;
         activeLineIndex = 0;
         activeClipIndex = 0;
-
-        speakerUi.Speaker = conversation.speaker;
-        playerUi.Speaker = conversation.player;
     }
 
     public void AdvanceLine() {
@@ -83,15 +71,7 @@ public class ConversationController : MonoBehaviour
         Line line = conversation.lines[activeLineIndex];
         Character character = line.character;
 
-        if (speakerUi.SpeakerIs(character))
-        {
-            SetDialog(speakerUi, playerUi, line.text);
-        }
-        else {
-            SetDialog(playerUi, speakerUi, line.text);
-        }
-
-        
+        SetDialog(speakerUi, playerUi, line.text, character);
     }
 
     private void PlayClip()
@@ -112,11 +92,12 @@ public class ConversationController : MonoBehaviour
             EndConversation();
     }
 
-    private void SetDialog(SpeakerUI activeSpeakerUI, SpeakerUI inactiveSpeakerUI, string text)
+    private void SetDialog(SpeakerUI activeSpeakerUI, SpeakerUI inactiveSpeakerUI, string text, Character character)
     {
         activeSpeakerUI.Show();
         inactiveSpeakerUI.Hide();
 
         activeSpeakerUI.Dialouge = text;
+        activeSpeakerUI.fullName.text = character.fullName;
     }
 }
