@@ -11694,11 +11694,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5c318d431f156574eabb080668772674, type: 2}
   - {fileID: 11400000, guid: add6351b012a437479ee045a3cc88b05, type: 2}
   - {fileID: 11400000, guid: 39a9ac8e640a1fc448feaaaa68d549fe, type: 2}
+  - {fileID: 11400000, guid: c269f841966a6584eacba46ca5ae44f3, type: 2}
+  - {fileID: 11400000, guid: 19bcd907df5870c40bb181220d9af713, type: 2}
+  - {fileID: 11400000, guid: ab335a4e02a4e5b4987e454cd18a9d27, type: 2}
+  - {fileID: 11400000, guid: 2b8dbb6d0632916409caccffe23f81e4, type: 2}
   randomizeCharacters: []
   presentCharacter: {fileID: 0}
   currentCharacter: 0
   maxRandomCharacter: 6
-  totalCharacter: 0
   startPosition: {x: 0, y: 0}
 --- !u!114 &1542641034
 MonoBehaviour:
@@ -14973,7 +14976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1971784386
 Transform:
   m_ObjectHideFlags: 0
@@ -15008,7 +15011,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2003530447
 RectTransform:
   m_ObjectHideFlags: 0
