@@ -8960,7 +8960,7 @@ MonoBehaviour:
   autoButton: {fileID: 1690970312}
   vibrateButton: {fileID: 806591698}
   GuidanceCircle: 1
-  AutoLesson: 1
+  AutoLesson: 0
   Vibration: 1
 --- !u!4 &753191082
 Transform:
