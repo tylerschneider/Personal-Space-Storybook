@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Grandparents
   m_EditorClassIdentifier: 
   fullName: Grandparents
-  sprite: {fileID: 21300000, guid: 142fd1e5ec22e3f4a8958c5cba3397cc, type: 3}
+  sprite: {fileID: 21300000, guid: e7f52e49f44467f48b9f927f0c0d4ccd, type: 3}
+  characterType: 0
