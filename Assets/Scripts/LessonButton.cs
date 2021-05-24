@@ -20,42 +20,52 @@ public class LessonButton : MonoBehaviour
         //check if the button is in the instructor menu
         if (lessonLoader.instructor)
         {
-            Debug.Log("instructor " + lessonLoader.instructor);
-            //toggle the button
-            lesson.GetComponent<Lesson>().lessonEnabled = !lesson.GetComponent<Lesson>().lessonEnabled;
-
-            //change the button's color when enabled/disabled
-            if (lesson.GetComponent<Lesson>().lessonEnabled)
+            if(StudentManager.Instance.selectedStudent != Guid.Empty)
             {
-                GetComponent<Image>().color = Color.white;
-            }
-            else
-            {
-                GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
-            }
+                //toggle the button
+                lesson.GetComponent<Lesson>().lessonEnabled = !lesson.GetComponent<Lesson>().lessonEnabled;
 
-            //save whether the lesson has been enabled/disabled when it is toggled
-            LessonManager.Instance.SaveEnabledLessons();
+                //change the button's color when enabled/disabled
+                if (lesson.GetComponent<Lesson>().lessonEnabled)
+                {
+                    GetComponent<Image>().color = Color.white;
+                }
+                else
+                {
+                    GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
+                }
+
+                //save whether the lesson has been enabled/disabled when it is toggled
+                LessonManager.Instance.SaveEnabledLessons();
+            }
         }
         else
         {
-            LessonManager.Instance.selectedLesson = lesson.GetComponent<Lesson>();
-            SceneManager.LoadScene("Main");
-            MenuManager.Instance.ChangeMenu(null);
+            if(lesson.GetComponent<Lesson>().characters.Count == 0)
+            {
+                LessonManager.Instance.selectedLesson = lesson.GetComponent<Lesson>();
+                SceneManager.LoadScene("Main");
+                MenuManager.Instance.ChangeMenu(null);
+                LessonManager.Instance.BeginTimer();
+                //LessonManager.Instance.AttemptsIncrease();
+            }
+            else
+            {
+                LessonManager.Instance.selectedLesson = lesson.GetComponent<Lesson>();
+                GameObject minigame = MenuManager.Instance.transform.Find("MiniGame").gameObject;
+                MenuManager.Instance.ChangeMenu(minigame);
+                minigame.transform.Find("Characters").GetComponent<DragSystem>().StartMinigame();
+                LessonManager.Instance.BeginTimer();
+            }
+
         }
-        LessonManager.Instance.SelectedIndex(GetIndexFromString(lesson.name)); 
     }
     public void OnHold()
     {
         //start holding
         pressed = true;
-        LessonManager.Instance.SelectedIndex(GetIndexFromString(lesson.name));
     }
-    private int GetIndexFromString(string name)
-    {
-        int ret = int.Parse(name.Substring(7, 1));
-        return ret;
-    }
+
     public void OffHold()
     {
         //stop holding and reset the timer
@@ -71,9 +81,6 @@ public class LessonButton : MonoBehaviour
         {
             MenuManager.Instance.LessonMenu(lesson);
         }
-        LessonManager.Instance.BeginTimer();
-        LessonManager.Instance.AttemptsIncrease();
-
     }
 
     private void Update()

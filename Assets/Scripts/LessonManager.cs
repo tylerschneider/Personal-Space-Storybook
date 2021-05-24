@@ -14,7 +14,8 @@ public class LessonManager : MonoBehaviour
 
     public Lesson selectedLesson;
     public Timer timer;
-    private int lessonAttempts;
+    public int reviewScore;
+
     void Start()
     {
         if (!Instance)
@@ -33,42 +34,6 @@ public class LessonManager : MonoBehaviour
         {
             Directory.CreateDirectory(Application.persistentDataPath + "/data");
         }
-
-        //load which lessons are enabled if there is a save
-        if (File.Exists(Application.persistentDataPath + "/lessonData.save"))
-        {
-            LoadEnabledLessons();
-        }
-    }
-
-    public void SelectedIndex(int index)
-    {
-        selectedLesson = this.gameObject.transform.GetChild(index - 1).GetComponent<Lesson>();
-        Debug.Log("selected " + selectedLesson.name);
-    }
-
-
-
-    public void BeginTimer()
-    {
-        if (selectedLesson != null)
-            selectedLesson.BeginTimer();
-    }
-    public void EndTimer()
-    {
-        if (selectedLesson != null)
-            selectedLesson.StopTimer();
-    }
-    public void ResetTimer()
-    {
-        if (selectedLesson != null)
-            selectedLesson.ResetTimer();
-    }
-    public void AttemptsIncrease()
-    {
-        selectedLesson.Attempt++;
-        Debug.Log("selected " + selectedLesson.name);
-        Debug.Log(selectedLesson.Attempt);
     }
 
     //!! for debug !!
@@ -76,15 +41,15 @@ public class LessonManager : MonoBehaviour
     {
         if(selectedLesson != null)
         {
-            CreateLessonHistory(selectedLesson.lessonName, selectedLesson.Attempt, selectedLesson.timeString());
+            CreateLessonHistory(selectedLesson.lessonName, Random.Range(0, 20), selectedLesson.timeString());
             counter++;
-
         }
-        
     }
 
     public void CreateLessonHistory(string lesson, int attempts, string time)
     {
+        Debug.Log("Creating History");
+
         //create a new guid for the file name
         System.Guid guid = System.Guid.NewGuid();
 
@@ -99,7 +64,7 @@ public class LessonManager : MonoBehaviour
 
         //save the lesson data file in the data folder
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/data/" + guid + ".save");
+        FileStream file = File.Create(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/" + guid + ".save");
         bf.Serialize(file, data);
         file.Close();
     }
@@ -108,7 +73,7 @@ public class LessonManager : MonoBehaviour
     {
         //read the lesson data file with the given guid
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + "/data/" + guid + ".save", FileMode.Open);
+        FileStream file = File.Open(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/" + guid + ".save", FileMode.Open);
         LessonData data = (LessonData)bf.Deserialize(file);
         file.Close();
 
@@ -116,7 +81,7 @@ public class LessonManager : MonoBehaviour
         data.note = note;
 
         //save over the existing data file with the updated one
-        file = File.Create(Application.persistentDataPath + "/data/" + guid + ".save");
+        file = File.Create(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/" + guid + ".save");
         bf.Serialize(file, data);
         file.Close();
     }
@@ -134,7 +99,7 @@ public class LessonManager : MonoBehaviour
 
         //save the file
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/lessonData.save");
+        FileStream file = File.Create(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/lessonData.save");
         bf.Serialize(file, data);
         file.Close();
     }
@@ -143,7 +108,7 @@ public class LessonManager : MonoBehaviour
     {
         //load the enabled lessons file
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + "/lessonData.save", FileMode.Open);
+        FileStream file = File.Open(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/lessonData.save", FileMode.Open);
         EnabledLessons data = (EnabledLessons)bf.Deserialize(file);
         file.Close();
 
@@ -152,16 +117,31 @@ public class LessonManager : MonoBehaviour
         {
             if(transform.GetChild(i) != null)
             {
+
                 transform.GetChild(i).GetComponent<Lesson>().lessonEnabled = data.enabledLesson[i];
                 transform.GetChild(i).GetComponent<Lesson>().lessonProgress = data.progress[i];
             }
         }
     }
 
+    public void ClearEnabledLessons()
+    {
+        foreach (Transform child in transform)
+        {
+            if(child != transform.GetChild(0))
+            {
+                child.GetComponent<Lesson>().lessonEnabled = false;
+            }
+            child.GetComponent<Lesson>().lessonProgress = "None";
+        }
+
+        Debug.Log("Clear Lesson Data");
+    }
+
     public void DeleteAllHistory()
     {
         //get all the files in the data folder
-        DirectoryInfo info = new DirectoryInfo(Application.persistentDataPath + "/data/");
+        DirectoryInfo info = new DirectoryInfo(Application.persistentDataPath + "/" + StudentManager.Instance.selectedStudent + "/");
         FileInfo[] files = info.GetFiles();
 
         //delete each file
@@ -175,8 +155,54 @@ public class LessonManager : MonoBehaviour
         {
             child.GetComponent<Lesson>().lessonProgress = "None";
         }
+    }
 
-        //save to make sure the change in lesson progress is recorded
+    public void BeginTimer()
+    {
+        if (selectedLesson != null)
+            selectedLesson.BeginTimer();
+    }
+    public void EndTimer()
+    {
+        if (selectedLesson != null)
+            selectedLesson.StopTimer();
+    }
+    public void ResetTimer()
+    {
+        if (selectedLesson != null)
+            selectedLesson.ResetTimer();
+    }
+
+    public void CompleteReview()
+    {
+        selectedLesson.lessonProgress = "Pass";
+
+        //if the auto lesson setting is enabled, find the next lesson and enable it
+        if (SettingsManager.Instance.AutoLesson)
+        {
+            for (int i = 0; i < transform.childCount - 1; i++)
+            {
+                if (transform.GetChild(i).GetComponent<Lesson>().name == selectedLesson.name)
+                {
+                    if(transform.GetChild(i + 1))
+                    {
+                        transform.GetChild(i + 1).GetComponent<Lesson>().lessonEnabled = true;
+                        SaveEnabledLessons();
+                    }
+
+                }
+            }
+        }
+
+        ReviewBackButton();
+    }
+
+    public void ReviewBackButton()
+    {
+        ResetTimer();
+        CreateLessonHistory(selectedLesson.lessonName, reviewScore, selectedLesson.timeString());
         SaveEnabledLessons();
+        MenuManager.Instance.ChangeMenu(MenuManager.Instance.transform.Find("StudentLessons").gameObject);
+        reviewScore = 0;
     }
 }

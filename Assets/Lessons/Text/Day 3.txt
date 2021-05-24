@@ -1,0 +1,15 @@
+Mother: We have to make a quick stop at the grocery store. Come here and let's go.
+
+[Enter the FAMILY circle to continue.] 
+
+[There is a stranger with a shopping cart. You do not know this person, and they have no visible name.] 
+
+[Enter the STRANGER circle to continue.] 
+
+Police Officer: Are you okay? You look like you lost your parents. Would you like some help finding them? Come over here and I'll help you find your parents.
+
+[Enter the FRIEND circle to continue]
+
+Mother: There you are! I was so worried about you.
+
+[Enter the FAMILY circle to continue] 

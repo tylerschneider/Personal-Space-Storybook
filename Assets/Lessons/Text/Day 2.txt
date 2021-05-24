@@ -1,0 +1,23 @@
+Dad: Have a great day at school! Come over here and say goodbye.
+
+[Enter the FAMILY circle to continue]
+
+Friend: Hi! How was your birthday yesterday? Come over here and tell me about it!
+
+[Enter the FRIEND circle to continue] 
+
+Teacher: Alright everyone, come over here and line up so we can go inside.
+
+[Enter the FRIEND circle to continue]
+
+Friend: Everyone who wants to play hide and seek come over here!
+
+[Enter the FRIEND circle to continue] 
+
+Stranger: Your mother asked me to pick you up from school. Get in so we can go home.
+
+[Enter the STRANGER circle to continue. Failure to do so results in the car driving off with a screech. The screen will go black and alert the student to NEVER get in the car with a stranger.]
+
+Dad: Over here! Come here and let's go home.
+
+[Enter the FAMILY circle to continue.]
