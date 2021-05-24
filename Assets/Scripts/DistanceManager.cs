@@ -47,7 +47,10 @@ public class DistanceManager : MonoBehaviour
         //vibrate the phone when changing between circles
         if(lastClassification != currentClassification)
         {
-            Handheld.Vibrate();
+            if(SettingsManager.Instance.Vibration)
+            {
+                Handheld.Vibrate();
+            }
             lastClassification = currentClassification;
         }
 

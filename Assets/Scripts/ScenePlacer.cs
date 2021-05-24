@@ -295,8 +295,11 @@ public class ScenePlacer : MonoBehaviour
                 {
                     if (LessonManager.Instance.transform.GetChild(i).GetComponent<Lesson>().name == lesson.name)
                     {
-                        transform.GetChild(i + 1).GetComponent<Lesson>().lessonEnabled = true;
-                        LessonManager.Instance.SaveEnabledLessons();
+                        if(transform.GetChild(i + 1))
+                        {
+                            transform.GetChild(i + 1).GetComponent<Lesson>().lessonEnabled = true;
+                        }
+
                     }
                 }
             }
@@ -327,6 +330,7 @@ public class ScenePlacer : MonoBehaviour
         //if returning to the main menu, end timer and create lesson history
         LessonManager.Instance.EndTimer();
         LessonManager.Instance.CreateLessonHistory(lesson.lessonName, score, lesson.timeString());
+        LessonManager.Instance.SaveEnabledLessons();
         SceneManager.LoadScene("MenuScene");
         MenuManager.Instance.ChangeMenu(MenuManager.Instance.transform.Find("StudentLessons").gameObject);
     }

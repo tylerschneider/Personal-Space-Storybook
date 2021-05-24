@@ -1,0 +1,7 @@
+This lesson is a review drag-and-drop minigame containing the following characters:
+
+Mother (Family)
+Grandparents (Family)
+Aunt (Family)
+Uncle (Family)
+Brother/Sister (Family)

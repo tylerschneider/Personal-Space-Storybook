@@ -14,6 +14,7 @@ public class LessonManager : MonoBehaviour
 
     public Lesson selectedLesson;
     public Timer timer;
+    public int reviewScore;
 
     void Start()
     {
@@ -170,5 +171,38 @@ public class LessonManager : MonoBehaviour
     {
         if (selectedLesson != null)
             selectedLesson.ResetTimer();
+    }
+
+    public void CompleteReview()
+    {
+        selectedLesson.lessonProgress = "Pass";
+
+        //if the auto lesson setting is enabled, find the next lesson and enable it
+        if (SettingsManager.Instance.AutoLesson)
+        {
+            for (int i = 0; i < transform.childCount - 1; i++)
+            {
+                if (transform.GetChild(i).GetComponent<Lesson>().name == selectedLesson.name)
+                {
+                    if(transform.GetChild(i + 1))
+                    {
+                        transform.GetChild(i + 1).GetComponent<Lesson>().lessonEnabled = true;
+                        SaveEnabledLessons();
+                    }
+
+                }
+            }
+        }
+
+        ReviewBackButton();
+    }
+
+    public void ReviewBackButton()
+    {
+        ResetTimer();
+        CreateLessonHistory(selectedLesson.lessonName, reviewScore, selectedLesson.timeString());
+        SaveEnabledLessons();
+        MenuManager.Instance.ChangeMenu(MenuManager.Instance.transform.Find("StudentLessons").gameObject);
+        reviewScore = 0;
     }
 }

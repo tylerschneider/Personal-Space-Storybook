@@ -17,6 +17,7 @@ public class Lesson : MonoBehaviour
     private TimeSpan timePlaying;
     private bool isPlaying;
     private float elapsedTime;
+    public List<Character> characters;
 
     private void Start()
     {

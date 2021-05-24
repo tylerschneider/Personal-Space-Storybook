@@ -18,6 +18,8 @@ public class StudentLoader : MonoBehaviour
 
     private void OnEnable()
     {
+        Debug.Log("Loading Students");
+
         //destroy any buttons already loaded
         foreach (Transform child in content.transform)
         {

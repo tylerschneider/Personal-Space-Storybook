@@ -1,0 +1,1 @@
+This lesson is a review drag-and-drop minigame containing all characters from the other lessons in random order.

@@ -35,6 +35,8 @@ public class MenuManager : MonoBehaviour
     //the lesson menu for displaying its summary
     public GameObject lessonMenu;
 
+    public GameObject studentDeleteMenu;
+
     public NoteMenuManager noteMenuManager;
 
     public VideoPlayer video; 

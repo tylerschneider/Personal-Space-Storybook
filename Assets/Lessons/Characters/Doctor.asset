@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullName: Doctor
   sprite: {fileID: 21300000, guid: 60d51bc5fa78515418dc925bb93ac444, type: 3}
+  characterType: 1

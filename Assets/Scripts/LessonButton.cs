@@ -41,11 +41,23 @@ public class LessonButton : MonoBehaviour
         }
         else
         {
-            LessonManager.Instance.selectedLesson = lesson.GetComponent<Lesson>();
-            SceneManager.LoadScene("Main");
-            MenuManager.Instance.ChangeMenu(null);
-            LessonManager.Instance.BeginTimer();
-            //LessonManager.Instance.AttemptsIncrease();
+            if(lesson.GetComponent<Lesson>().characters.Count == 0)
+            {
+                LessonManager.Instance.selectedLesson = lesson.GetComponent<Lesson>();
+                SceneManager.LoadScene("Main");
+                MenuManager.Instance.ChangeMenu(null);
+                LessonManager.Instance.BeginTimer();
+                //LessonManager.Instance.AttemptsIncrease();
+            }
+            else
+            {
+                LessonManager.Instance.selectedLesson = lesson.GetComponent<Lesson>();
+                GameObject minigame = MenuManager.Instance.transform.Find("MiniGame").gameObject;
+                MenuManager.Instance.ChangeMenu(minigame);
+                minigame.transform.Find("Characters").GetComponent<DragSystem>().StartMinigame();
+                LessonManager.Instance.BeginTimer();
+            }
+
         }
     }
     public void OnHold()

@@ -11,20 +11,22 @@ public class SettingsManager : MonoBehaviour
 
     public GameObject guidanceButton;
     public GameObject autoButton;
+    public GameObject vibrateButton;
 
     public bool GuidanceCircle;
     public bool AutoLesson;
+    public bool Vibration;
 
     private void Start()
     {
         if (!Instance)
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
         //if a settings file exists, load them. If not, create a file.
@@ -51,6 +53,12 @@ public class SettingsManager : MonoBehaviour
 
         SaveSettings();
     }
+    public void SetVibration()
+    {
+        Vibration = !Vibration;
+
+        SaveSettings();
+    }
 
     public void SaveSettings()
     {
@@ -58,6 +66,7 @@ public class SettingsManager : MonoBehaviour
 
         data.GuidanceCircle = GuidanceCircle;
         data.AutoLesson = AutoLesson;
+        data.Vibration = Vibration;
 
         //save the settings file
         BinaryFormatter bf = new BinaryFormatter();
@@ -76,6 +85,7 @@ public class SettingsManager : MonoBehaviour
 
         GuidanceCircle = data.GuidanceCircle;
         AutoLesson = data.AutoLesson;
+        Vibration = data.Vibration;
     }
 
     private void Update()
@@ -83,6 +93,7 @@ public class SettingsManager : MonoBehaviour
         //make sure the buttons are the correct color when the setting is on/off
         SetButtonColor(guidanceButton, GuidanceCircle);
         SetButtonColor(autoButton, AutoLesson);
+        SetButtonColor(vibrateButton, Vibration);
     }
 
     private void SetButtonColor(GameObject button, bool state)

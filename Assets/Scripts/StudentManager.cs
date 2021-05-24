@@ -10,6 +10,7 @@ public class StudentManager : MonoBehaviour
     public static StudentManager Instance;
     public string selectedName;
     public System.Guid selectedStudent;
+    public System.Guid selectedDeleteGUID;
 
     private void Start()
     {
@@ -53,10 +54,21 @@ public class StudentManager : MonoBehaviour
         Debug.Log("Create student");
     }
 
+    public void ConfirmDeleteStudent()
+    {
+        DeleteStudent(selectedDeleteGUID);
+        if (selectedStudent == selectedDeleteGUID)
+        {
+            selectedStudent = System.Guid.Empty;
+            name = null;
+        }
+        selectedDeleteGUID = System.Guid.Empty;
+    }
+
     public void DeleteStudent(System.Guid guid)
     {
         File.Delete(Application.persistentDataPath + "/" + guid + ".data");
-        Directory.Delete(Application.persistentDataPath + "/" + guid);
+        Directory.Delete(Application.persistentDataPath + "/" + guid, true);
     }
 
     public void SaveLastStudent()

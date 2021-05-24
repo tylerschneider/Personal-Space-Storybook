@@ -1,0 +1,5 @@
+This lesson is a review drag-and-drop minigame containing the following characters:
+
+Father (Family)
+Doctor (Friend)
+Stranger with dog (Stranger)

@@ -20,13 +20,9 @@ public class StudentButton : MonoBehaviour
 
     public void OnClickDelete()
     {
-        StudentManager.Instance.DeleteStudent(guid);
-        if(StudentManager.Instance.selectedStudent == guid)
-        {
-            StudentManager.Instance.selectedStudent = System.Guid.Empty;
-            StudentManager.Instance.name = null;
-        }
-        Destroy(gameObject);
+        MenuManager.Instance.ChangeMenu(MenuManager.Instance.studentDeleteMenu);
+        MenuManager.Instance.studentDeleteMenu.transform.Find("Label").GetComponent<Text>().text = studentName + " will now be deleted.";
+        StudentManager.Instance.selectedDeleteGUID = guid;
     }
 
     private void Update()
