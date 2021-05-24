@@ -277,7 +277,9 @@ public class ScenePlacer : MonoBehaviour
             conversationNum++;
             conversation.conversation = lesson.conversations[conversationNum];
             conversation.Initialize();
-            //conversation.AdvanceLine();
+            placedObject.transform.Find("Character").GetComponent<SpriteRenderer>().sprite = conversation.conversation.lines[conversation.activeLineIndex].character.sprite;
+            conversation.AdvanceLine();
+
 
             endScreen.SetActive(false);
             nextButton.SetActive(true);

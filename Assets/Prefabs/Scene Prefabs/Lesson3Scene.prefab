@@ -304,6 +304,11 @@ MonoBehaviour:
       m_Calls: []
   speaker: {fileID: 1308512365034157801}
   player: {fileID: 8526577315113727559}
+  speakerUi: {fileID: 0}
+  activeLineIndex: 0
+  activeClipIndex: 0
+  conversationStarted: 0
+  conversationEnded: 0
 --- !u!82 &1795214817519886212
 AudioSource:
   m_ObjectHideFlags: 0
@@ -789,7 +794,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: c3aa32dd3851dd742974fcef3faa2b2c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 93d968ece42d273429c2197619f04e8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
