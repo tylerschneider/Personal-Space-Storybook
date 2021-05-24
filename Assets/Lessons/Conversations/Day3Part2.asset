@@ -18,6 +18,6 @@ MonoBehaviour:
   nextConversation: {fileID: 0}
   lines:
   - character: {fileID: 11400000, guid: a10b72120b831054e8920430ec8cdbaa, type: 2}
-    text: 
+    text: '    '
   voiceclips:
   - {fileID: 0}

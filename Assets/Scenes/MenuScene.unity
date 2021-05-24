@@ -22551,7 +22551,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 489d1636e880f164db210cdc122af602, type: 2}
   - {fileID: 11400000, guid: c8996778bfb86844ab0ffe170b690f74, type: 2}
   answers: 03000000020000000300000001000000
-  placedObject: {fileID: 5349509109877635419, guid: 80cb5024c6347ba408ae1b3b8f061c6f,
+  placedObject: {fileID: 5349509109877635419, guid: a5e205454b110a3468fd26ca99071eaa,
     type: 3}
   lessonName: Day 4
   timePlayingStr: 

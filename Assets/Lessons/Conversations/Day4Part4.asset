@@ -18,6 +18,6 @@ MonoBehaviour:
   nextConversation: {fileID: 0}
   lines:
   - character: {fileID: 11400000, guid: f9ec3674d13ab5c409747a5a11ba2a40, type: 2}
-    text: "There you are! I was so worried about you.\r"
+    text: '   '
   voiceclips:
   - {fileID: 0}
