@@ -293,7 +293,7 @@ public class ScenePlacer : MonoBehaviour
             //if the auto lesson setting is enabled, find the next lesson and enable it
             if (SettingsManager.Instance.AutoLesson)
             {
-                for (int i = 0; i < transform.childCount - 1; i++)
+                for (int i = 0; i < LessonManager.Instance.transform.childCount - 1; i++)
                 {
                     if (LessonManager.Instance.transform.GetChild(i).GetComponent<Lesson>().name == lesson.name)
                     {
