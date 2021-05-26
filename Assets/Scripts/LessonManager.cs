@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.UI;
+using System;
 
 public class LessonManager : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class LessonManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
             timer = Timer.instance;
+            #if UNITY_IOS
+            Debug.Log("Iphone");
+            Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
+            #endif
         }
         else
         {
@@ -41,7 +46,7 @@ public class LessonManager : MonoBehaviour
     {
         if(selectedLesson != null)
         {
-            CreateLessonHistory(selectedLesson.lessonName, Random.Range(0, 20), selectedLesson.timeString());
+            CreateLessonHistory(selectedLesson.lessonName, UnityEngine.Random.Range(0, 20), selectedLesson.timeString());
             counter++;
         }
     }
