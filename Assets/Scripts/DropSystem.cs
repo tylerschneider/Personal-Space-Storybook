@@ -10,7 +10,7 @@ namespace SocicalCircle
     {
         public Color highlight;
         private Color normal;
-        public CharacterType type;
+        public Character.CharacterType type;
         public GameObject clones;
         public Text notification;
         private string lines;
@@ -24,35 +24,37 @@ namespace SocicalCircle
                 eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
 
                 eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = pointer.startPosition;
-                if (pointer.currentCharacter < pointer.maxRandomCharacter && type == pointer.randomizeCharacters[pointer.currentCharacter].characterType)
+
+                LessonManager.Instance.reviewScore++;
+
+                if (pointer.currentCharacter < pointer.characters.Count && type == pointer.randomizeCharacters[pointer.currentCharacter].characterType)
                 {
                     clones.GetComponent<Image>().sprite = pointer.presentCharacter.sprite;
                     clones.GetComponent<Image>().preserveAspect = true;
-                    //evenData.GetComponent<AudioSource().clip.PlayOneShot();
                     GameObject obj = Instantiate(clones, gameObject.transform);
                     obj.transform.parent = gameObject.transform;
                     pointer.currentCharacter++;
-                    switch (type)
+                    /*switch (type)
                     {
-                        case CharacterType.Family:
-                            StartCoroutine(sendNotify("this is your family member",3));
+                        case Character.CharacterType.Family:
+                            StartCoroutine(sendNotify("This is your family member!",3));
                             notification.color = Color.green;
                             break;
-                        case CharacterType.Friend:
-                            StartCoroutine(sendNotify("this is your friend", 3));
+                        case Character.CharacterType.Friend:
+                            StartCoroutine(sendNotify("This is your friend!", 3));
                             notification.color = Color.black;
                             break;
-                        case CharacterType.Stranger:
+                        case Character.CharacterType.Stranger:
                             StartCoroutine(sendNotify("this is a stranger", 3));
                             notification.color = Color.red;
                             break;
                         default:
                             break;
-                    }
+                    }*/
 
-                    if(pointer.currentCharacter < pointer.maxRandomCharacter)
+                    if(pointer.currentCharacter < pointer.characters.Count)
                     {
-                        pointer.presentCharacter.sprite = pointer.randomizeCharacters[pointer.currentCharacter].characterSprite;
+                        pointer.presentCharacter.sprite = pointer.randomizeCharacters[pointer.currentCharacter].sprite;
                         //pointer.GetComponet<AudioSource>().clip == pointer.randomizeCharacters[pointer.currentCharacter].voice;
                     }
                     else
@@ -61,8 +63,22 @@ namespace SocicalCircle
                         pointer.presentCharacter.sprite = null;
                     }
                 }
+                
+                if(pointer.currentCharacter >= pointer.characters.Count)
+                {
+                    MenuManager.Instance.transform.Find("MiniGame").Find("EndScreen").gameObject.SetActive(true);
+                    MenuManager.Instance.transform.Find("MiniGame").Find("BackButton").gameObject.SetActive(false);
+                }
             }
 
+        }
+
+        private void OnEnable()
+        {
+            foreach(Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }
         }
 
         public void OnPointerEnter(PointerEventData eventData)

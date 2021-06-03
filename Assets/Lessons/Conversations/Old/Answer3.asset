@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 795d38ecdffec8e46aa7746e0ecb83be, type: 3}
+  m_Name: Answer3
+  m_EditorClassIdentifier: 
+  speaker: {fileID: 11400000, guid: 79994958a64c5c94486b4b07f4ccca6b, type: 2}
+  player: {fileID: 11400000, guid: 7c9685e8910a226429737313937ea9d2, type: 2}
+  question: {fileID: 0}
+  nextConversation: {fileID: 0}
+  lines:
+  - character: {fileID: 11400000, guid: 79994958a64c5c94486b4b07f4ccca6b, type: 2}
+    text: "\"Ah, so you've picked Chindin? Excellent choice young one! I bet you
+      two will\r become the best of friends!\""
+  voiceclips:
+  - {fileID: 0}

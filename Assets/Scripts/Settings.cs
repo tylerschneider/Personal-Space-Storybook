@@ -6,4 +6,6 @@ using UnityEngine;
 public class Settings
 {
     public bool GuidanceCircle;
+    public bool AutoLesson;
+    public bool Vibration;
 }

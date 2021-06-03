@@ -4,43 +4,57 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace SocicalCircle
-{
-
     public class DragSystem : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
     {
         [SerializeField] public Canvas canvas;
         private RectTransform rectTransform;
         private CanvasGroup canvasGroup;
-        public List<ScriptableCharacters> characters;
-        public List<ScriptableCharacters> randomizeCharacters;
+        public List<Character> characters;
+        public List<Character> randomizeCharacters;
         public Image presentCharacter;
         //public AudioClip voice;
         public int currentCharacter;
-        public int maxRandomCharacter;
-        private int totalCharacter;
         public Vector2 startPosition;
-        private void Awake()
+    private Vector2 startPos;
+
+    public void StartMinigame()
         {
-            currentCharacter = 0;
-            totalCharacter = characters.Count;
-            rectTransform = GetComponent<RectTransform>();
-            canvasGroup = GetComponent<CanvasGroup>();
-            presentCharacter = GetComponent<Image>();
-            HashSet<int> randomNumbers = new HashSet<int>();
-            while (randomNumbers.Count < maxRandomCharacter)
+            if(startPos == Vector2.zero)
             {
-                randomNumbers.Add(Random.Range(1, totalCharacter));
+            startPos = transform.position;
             }
-            foreach (int i in randomNumbers)
+
+            transform.position = startPos;
+
+            gameObject.SetActive(true);
+            MenuManager.Instance.transform.Find("MiniGame").Find("EndScreen").gameObject.SetActive(false);
+            MenuManager.Instance.transform.Find("MiniGame").Find("BackButton").gameObject.SetActive(true);
+
+        rectTransform = GetComponent<RectTransform>();
+        canvasGroup = GetComponent<CanvasGroup>();
+        presentCharacter = GetComponent<Image>();
+
+
+        startPosition = rectTransform.anchoredPosition;
+
+        characters = LessonManager.Instance.selectedLesson.characters;
+            currentCharacter = 0;
+
+        canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = true;
+
+        randomizeCharacters = characters;
+
+            for (int i = 0; i < characters.Count; i++)
             {
-                randomizeCharacters.Add(characters[i - 1]);
-                Debug.Log(i);
+                Character temp = characters[i];
+                int rand = Random.Range(i, characters.Count);
+                randomizeCharacters[i] = characters[rand];
+                randomizeCharacters[rand] = temp;
             }
 
             //this.getComponent<AudioSource>().clip = voice;
-            this.GetComponent<Image>().sprite = randomizeCharacters[currentCharacter].characterSprite;
-            startPosition = rectTransform.anchoredPosition;
+            GetComponent<Image>().sprite = randomizeCharacters[currentCharacter].sprite;
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
@@ -66,8 +80,4 @@ namespace SocicalCircle
         {
             Debug.Log("OnPointerDown");
         }
-
-
     }
-
-}

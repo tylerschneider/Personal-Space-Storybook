@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3292d91992e4d37488d5dc90aea79485, type: 3}
+  m_Name: DragonChoice
+  m_EditorClassIdentifier: 
+  text: Who do you choose?
+  choices:
+  - text: Graggle!
+    conversation: {fileID: 11400000, guid: 1ab13e97cdabd4e498273d9d377f02aa, type: 2}
+  - text: Fina!
+    conversation: {fileID: 11400000, guid: 736ec4d2038732b4599cb618e3bc325c, type: 2}
+  - text: Chindin!
+    conversation: {fileID: 11400000, guid: ceab4203ac87d334b974feff0b757d90, type: 2}
