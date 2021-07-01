@@ -6,6 +6,7 @@ using System.IO;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using UnityEngine.Android;
+using System;
 
 public class MenuManager : MonoBehaviour
 {
@@ -48,6 +49,10 @@ public class MenuManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
+            #if UNITY_IOS
+            Debug.Log("Iphone");
+            Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
+            #endif
         }
         else
         {

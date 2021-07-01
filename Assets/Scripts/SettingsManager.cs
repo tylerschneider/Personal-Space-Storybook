@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class SettingsManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            #if UNITY_IOS
+            Debug.Log("Iphone");
+            Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
+            #endif
         }
         else
         {
